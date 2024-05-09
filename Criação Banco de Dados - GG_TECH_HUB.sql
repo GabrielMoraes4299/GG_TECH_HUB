@@ -20,7 +20,7 @@ CREATE TABLE tb_categorias(
 );
 
 CREATE TABLE tb_produtos(
-	id_produto INT PRIMARY KEY,
+	id_produto BIGINT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     foto VARCHAR(400) NOT NULL,
     id_categoria INT NOT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE tb_produtos(
 
 CREATE TABLE tb_comentarios(
 	id_comentario INT AUTO_INCREMENT PRIMARY KEY,
-    id_produto INT NOT NULL,
+    id_produto BIGINT NOT NULL,
     CPF_cliente VARCHAR(11) NOT NULL,
     conteudo VARCHAR(300) NOT NULL,
     avaliacao TINYINT NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE tb_comentarios(
 
 CREATE TABLE tb_carrinho (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-    id_produto INT NOT NULL,
+    id_produto BIGINT NOT NULL,
     CPF_cliente VARCHAR(11) NOT NULL,
     quantidade INT NOT NULL,
     CONSTRAINT fk_carrinho_produtos FOREIGN KEY (id_produto) REFERENCES tb_produtos(id_produto),
