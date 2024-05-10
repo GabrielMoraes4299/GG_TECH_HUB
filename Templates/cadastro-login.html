@@ -1,27 +1,34 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro_Login</title>
-</head>
-<body>
-    <div class="cadastro">
-        <h2>Ainda não sou cadastrado</h2>
-        <label for="email">email:</label>
-        <input type="email" placeholder="Email">
-        <label for="password">senha:</label>
-        <input type="password" placeholder="insira a sua senha">
-        <label for="tel">cpf:</label>
-        <input type="tel" placeholder="insira o seu cpf">
-    </div>
-    <div class="Login">
-        <h2>já tenho uma conta</h2>
-        <label for="email">email:</label>
-        <input type="email" placeholder="Email">
-        <label for="password">Senha:</label>
-        <input type="password" placeholder="insira a sua senha">
-    </div>
+{% extends "cabecalho-rodape.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{url_for('static', filename='cadastro-login.css')}}">
 
-</body>
-</html>
+<div class="container-cadastro-login">
+    <div class="container-cadastro">
+        <h2>Ainda não sou cadastrado</h2>
+        <form class="formulario-cadastro">
+            <label for="nome-cadastro">Nome:<br><input type="text" id="nome-cadastro" placeholder="Digite seu nome"></label>
+    
+            <label for="email-cadastro">Email:<br><input type="email" id="email-cadastro" placeholder="Digite um endereço de e-mail"></label>
+        
+            <label for="senha-cadastro">Senha:<br><input type="password" id="senha-cadastro" placeholder="Crie uma senha"></label>
+            
+            <label for="telefone-cadastro">Telefone:<br><input type="number" id="telefone-cadastro" placeholder="Digite o seu número de telefone"></label>
+    
+            <label for="cpf-cadastro">CPF:<br><input type="cpf" id="cpf-cadastro" placeholder="Digite o seu cpf"></label>
+
+            <button id="cadastrar">Cadastrar</button>
+        </form>
+    </div>
+    
+    <div class="container-login">
+        <h2>Já tenho uma conta</h2>
+        <form class="formulario-login">
+            <label for="email-login">Email:<input type="email" id="email-login" placeholder="Email"></label>
+            
+            <label for="senha-login">Senha:<input type="password" id="senha-login" placeholder="insira a sua senha"></label>
+
+            <button id="logar">Fazer Login</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

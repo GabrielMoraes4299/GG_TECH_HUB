@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Static/cabecalho-rodape.css">
-    <!-- <link rel="stylesheet" href="{{url_for('static', filename='cabecalho-rodape.css')}}"> -->
-    <title>cabeçalho e rodapé</title>
+    <!-- <link rel="stylesheet" href="../Static/cabecalho-rodape.css"> -->
+    <link rel="stylesheet" href="{{url_for('static', filename='cabecalho-rodape.css')}}">
+    <title>Cabeçalho e Rodapé</title>
 </head>
-
 <body>
     <header>
         <div class="container-header">
@@ -39,8 +38,14 @@
         </div>
         
     </header>
+    <section>
+        <div class="container-content">
             {% block content %}
             {% endblock %}
+        </div>
+
+    </section>
+
     <footer>
         <div class="container-footer">
             <div class="container-footer__imagem">
