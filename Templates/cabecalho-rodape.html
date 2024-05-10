@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='cabecalho-rodape.css')}}">
+    <link rel="stylesheet" href="../Static/cabecalho-rodape.css">
+    <!-- <link rel="stylesheet" href="{{url_for('static', filename='cabecalho-rodape.css')}}"> -->
     <title>cabeçalho e rodapé</title>
 </head>
 
@@ -12,26 +13,33 @@
 
     <header>
         <div class="container-header">
-            <img class="container-header__logo" src="" alt="Logo do Site">
-            <ul class="container-header__info">
-                <li><a href="/sobre-nos">SOBRE NÓS</a></li>
-                <li><a href="/fale-conosco">FALE CONOSCO</a></li>
-                <li><a href="/perguntas-frequentes">PERGUNTAS FREQUENTES</a></li>
-                <li><button>Crie a sua conta ou faça login</button></li>
-            </ul>
+            <div class="container-header__parte01">
+                <img class="container-header__logo" src="" alt="Logo do Site">
+                <ul class="container-header__info">
+                    <li><a href="/sobre-nos">SOBRE NÓS</a></li>
+                    <li><a href="/fale-conosco">FALE CONOSCO</a></li>
+                    <li><a href="/perguntas-frequentes">PERGUNTAS FREQUENTES</a></li>
+                    <li><button>Crie a sua conta ou faça login</button></li>
+                </ul>
+            </div>
+
+            <div class="container-header__parte02">
+                <ul class="container-header__menu">
+                    <li><button>Smartphones</button></li>
+                    <li><button>Notebooks</button></li>
+                    <li><button>Câmeras</button></li>
+                    <li><button>Tablets</button></li>
+                    <li><button>Smartwatches</button></li>
+                    <li><buttonAcessórios de Áudiobutton></li>
+                    <li><button>Monitores e TVs</button></li>
+                    <li><button>Consoles de Jogos</button></li>
+                    <li><button>Impressoras</button></li>
+                    <li><button>Roteadores e Redes</button></li>
+                </ul>
+            </div>
+            
         </div>
-        </ul class="container-header__menu">
-            <li>Smartphones</li>
-            <li>Notebooks</li>
-            <li>Câmeras</li>
-            <li>Tablets</li>
-            <li>Smartwatches</li>
-            <li>Acessórios de Áudio</li>
-            <li>Monitores e TVs</li>
-            <li>Consoles de Jogos</li>
-            <li>Impressoras</li>
-            <li>Roteadores e Redes</li>
-        <ul>
+        
     </header>
         {% block content %}
 

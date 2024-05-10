@@ -11,11 +11,27 @@
 /* --------------------------------------- FORMATAÇÃO DO CABEÇALHO --------------------------------------- */
 .container-header{
     display: flex;
-    align-items: center;
+    flex-direction: column;
     width: 100vw;
-    height: 60px;
+    height: 100px;
     background-color: rgb(0, 0, 0);
     border: 1px solid black;
+}
+
+.container-header__parte01{
+    width: 100vw;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-header__parte02{
+    width: 100vw;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(52, 52, 255);
 }
 
 .container-header__logo{
@@ -67,7 +83,10 @@
 
 .container-header__menu{
     width: 100vw;
-    background-color: blue;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    font-family: "Poetsen One", sans-serif;
 }
 
 /* --------------------------------------- FORMATAÇÃO DO RODAPÉ --------------------------------------- */
