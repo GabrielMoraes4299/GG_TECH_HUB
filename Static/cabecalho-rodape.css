@@ -83,10 +83,28 @@
 
 .container-header__menu{
     width: 100vw;
+    height: 100%;
     display: flex;
     justify-content: space-around;
     list-style: none;
     font-family: "Poetsen One", sans-serif;
+    padding: 0;
+}
+
+.container-header__menu li{
+    width: 100%;
+    height: 100%;
+}
+
+.container-header__menu li button{
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+}
+
+.container-header__menu li button:hover{
+    background-color: rgb(82, 82, 255);
 }
 
 /* --------------------------------------- FORMATAÇÃO DO RODAPÉ --------------------------------------- */
@@ -95,8 +113,6 @@
     width: 100vw;
     height: 200px;
     background-color: rgb(38, 38, 38);
-    position: absolute;
-    bottom: 0px;
 }
 
 .container-footer__imagem{
