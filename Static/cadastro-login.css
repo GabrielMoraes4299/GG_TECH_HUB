@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+.container-cadastro-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    height: 100%;
+}
+
+.container-cadastro{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30%;
+    height: 80%;
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid blue;
+}
+
+.formulario-cadastro{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 90%;
+    gap: 10px;
+}
+
+.formulario-cadastro label{
+    font-size: 15px;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    width: 100%;
+}
+
+.formulario-cadastro input{
+    width: 100%;
+    padding-left: 5px;
+}
+
+.formulario-cadastro button{
+    width: 50%;
+    height: 10%;
+    border: none;
+    background-color: rgb(0, 0, 255);
+    color: white;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.formulario-cadastro button:hover{
+    background-color: rgb(57, 57, 255);
+}
+
+.container-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 30%;
+    height: 80%;
+    padding: 30px;
+    border-radius: 20px;
+    border: 2px solid blue;
+}
+
+.formulario-login{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 80%;
+    height: 90%;
+    gap: 20px;
+}
+
+.formulario-login label{
+    font-size: 25px;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    width: 100%;
+}
+
+.formulario-login input{
+    width: 100%;
+    height: 50%;
+    padding-left: 5px;
+}
+
+.formulario-login button{
+    width: 50%;
+    height: 10%;
+    border: none;
+    background-color: rgb(0, 0, 255);
+    color: white;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.formulario-login button:hover{
+    background-color: rgb(57, 57, 255);
+}
