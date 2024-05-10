@@ -4,9 +4,9 @@ app = Flask(__name__)
 
 app.secret_key = "capivara"
 
-app.route("/")
+@app.route("/")
 def pg_inicial():
-    return render_template("")
+    return render_template("cabecalho-rodape.html")
 
 @app.route("/cadastro")
 def pg_cadasatrar_form():
@@ -18,6 +18,5 @@ def pg_cadastro():
         return render_template("cadastro-login.html")
     else:
         return render_template("cadastro-login.html")
-
 
 app.run(debug=True)
