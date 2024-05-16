@@ -30,5 +30,4 @@ def pg_cadastro():
     else:
         return {'mensagem':'ERRO'}, 500
     
-
 app.run(debug=True)

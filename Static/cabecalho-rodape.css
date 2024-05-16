@@ -109,11 +109,6 @@ body{
 .container-header__menu li button:hover{
     background-color: rgb(82, 82, 255);
 }
-
-/* --------------------------------------- FORMATAÇÃO DO RCONTEÚDO --------------------------------------- */
-.container-content{
-    height: 62vh;
-}
 /* --------------------------------------- FORMATAÇÃO DO RODAPÉ --------------------------------------- */
 .container-footer{
     display: flex;
