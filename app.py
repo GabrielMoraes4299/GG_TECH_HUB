@@ -29,5 +29,5 @@ def pg_cadastro():
         return jsonify({'mensagem':'Cadastro OK'}), 200
     else:
         return {'mensagem':'ERRO'}, 500
-    
+
 app.run(debug=True)
