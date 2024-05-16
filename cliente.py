@@ -11,26 +11,23 @@ class Cliente:
         self.logado = False
 
     def cadastrar(self, cpf, telefone, email, nome, senha):
-        try:
-            myBD = Connection.conectar()
+        myBD = Connection.conectar()
 
-            mycursor = myBD.cursor()
+        mycursor = myBD.cursor()
 
-            self.cpf = cpf
-            self.telefone = telefone
-            self.email = email
-            self.nome = nome
-            self.senha = senha
-            self.logado = True
-            senha_criptografada = sha256(self.senha.encode()).hexdigest()
+        self.cpf = cpf
+        self.telefone = telefone
+        self.email = email
+        self.nome = nome
+        self.senha = senha
+        self.logado = True
+        senha_criptografada = sha256(self.senha.encode()).hexdigest()
 
-            mycursor.execute(f"INSERT INTO tb_clientes (CPF, telefone, email, nome, senha) VALUES ('{cpf}', '{telefone}','{email}', '{nome}','{senha_criptografada}');")
+        mycursor.execute(f"INSERT INTO tb_clientes (CPF, telefone, email, nome, senha) VALUES ('{cpf}', '{telefone}','{email}', '{nome}','{senha_criptografada}');")
 
-            myBD.commit()
+        myBD.commit()
 
-            return True
-        except:
-            return False
+        return True
 
     def logar(self, email, senha):
         myBD = Connection.conectar()
