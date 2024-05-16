@@ -5,30 +5,69 @@
 <div class="container-cadastro-login">
     <div class="container-cadastro">
         <h2>Ainda não sou cadastrado</h2>
-        <form class="formulario-cadastro">
+        <div class="formulario-cadastro">
+            <p id="resposta"></p>
             <label for="nome-cadastro">Nome:<br><input type="text" id="nome-cadastro" placeholder="Digite seu nome"></label>
+
+            <label for="telefone-cadastro">Telefone:<br><input type="text" id="telefone-cadastro" placeholder="Digite o seu número de telefone"></label>
+    
+            <label for="cpf-cadastro">CPF:<br><input type="cpf" id="cpf-cadastro" placeholder="Digite o seu cpf"></label>
     
             <label for="email-cadastro">Email:<br><input type="email" id="email-cadastro" placeholder="Digite um endereço de e-mail"></label>
         
             <label for="senha-cadastro">Senha:<br><input type="password" id="senha-cadastro" placeholder="Crie uma senha"></label>
-            
-            <label for="telefone-cadastro">Telefone:<br><input type="text" id="telefone-cadastro" placeholder="Digite o seu número de telefone"></label>
-    
-            <label for="cpf-cadastro">CPF:<br><input type="cpf" id="cpf-cadastro" placeholder="Digite o seu cpf"></label>
 
-            <button id="cadastrar">Cadastrar</button>
-        </form>
+            <button id="cadastrar" onclick="cadastrar()">Cadastrar</button>
+        </div>
     </div>
     
     <div class="container-login">
         <h2>Já tenho uma conta</h2>
-        <form class="formulario-login">
+        <div class="formulario-login">
             <label for="email-login">Email:<input type="email" id="email-login" placeholder="Email"></label>
             
             <label for="senha-login">Senha:<input type="password" id="senha-login" placeholder="insira a sua senha"></label>
 
             <button id="logar">Fazer Login</button>
-        </form>
+        </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    function cadastrar() {
+        var dados = {
+            nome:$('#nome-cadastro').val(),
+            telefone:$('#telefone-cadastro').val(),
+            cpf:$('#cpf-cadastro').val(),
+            email:$('#email-cadastro').val(),
+            senha:$('#senha-cadastro').val()
+        }
+
+        $.ajax({
+            url: '/cadastro',
+            type: 'POST',
+            data: JSON.stringify(dados),
+            contentType: 'application/json',
+            success: function(){
+                document.getElementById('resposta').value = '';
+                $('#resposta').append('CADASTRO REALIZADO COM SUCESSO!');
+                document.getElementById('nome-cadastro').value = '';
+                document.getElementById('telefone-cadastro').value = '';
+                document.getElementById('cpf-cadastro').value = '';
+                document.getElementById('email-cadastro').value = '';
+                document.getElementById('senha-cadastro').value = '';
+            },
+            error: function(){
+                document.getElementById('resposta').value = '';
+                $('#resposta').append("ERRO AO CADASTRAR!");
+                document.getElementById('nome-cadastro').value = '';
+                document.getElementById('telefone-cadastro').value = '';
+                document.getElementById('cpf-cadastro').value = '';
+                document.getElementById('email-cadastro').value = '';
+                document.getElementById('senha-cadastro').value = '';
+            }
+
+        })
+    }
+</script>
 {% endblock %}
