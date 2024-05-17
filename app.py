@@ -7,7 +7,7 @@ app.secret_key = "capivara"
 
 @app.route("/")
 def pg_inicial():
-    return render_template("cabecalho-rodape.html")
+    return render_template("Pagina-inicial.html")
 
 @app.route("/cadastro")
 def pg_cadasatrar_form():
