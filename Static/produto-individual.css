@@ -99,7 +99,80 @@
     background-color: rgb(112, 112, 255);
 }
 
-/* Formatação dos inputs do comentário */
+/* ---------------------Formatação dos inputs do comentário--------------------- */
 .inputs-comentarios{
-    
+    width: 80vw;
+    height: 25rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(225, 225, 225);
 }
+
+.inputs-comentarios label{
+    text-align: center;
+}
+
+.inputs-comentarios button{
+    width: 30%;
+    height: 5rem;
+    margin: 20px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgb(58, 58, 255);
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.inputs-comentarios button:hover{
+    background-color: rgb(112, 112, 255);
+}
+
+.input-comentario{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.input-comentario input{
+    width: 50rem;
+    height: 50%;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.input-avaliacao{
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.input-avaliacao input{
+    width: 50rem;
+    height: 50%;
+    font-size: 20px;
+    padding: 10px;
+}
+
+/*  */
