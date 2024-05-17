@@ -9,8 +9,8 @@ app.secret_key = "capivara"
 def pg_inicial():
     return render_template("cabecalho-rodape.html")
 
-@app.route("/cadastro")
-def pg_cadasatrar_form():
+@app.route("/cadastro-login")
+def pg_cadastrar_form():
     return render_template("cadastro-login.html")
 
 @app.route("/cadastro", methods=["POST"])
@@ -29,5 +29,26 @@ def pg_cadastro():
         return jsonify({'mensagem':'Cadastro OK'}), 200
     else:
         return {'mensagem':'ERRO'}, 500
+
+@app.route("/login", methods=["GET","POST"])
+def pg_login():
+    cliente = Cliente()
+    if request.method == "GET":
+        if session.get("usuario","erro") == "Autenticado":   
+            return redirect("/")
+        else:
+            return redirect("cadastro-login.html")
+    else:
+        email = request.form["email-login"]
+        senha = request.form["senha-login"]
+
+        cliente.logar(email, senha)
+
+        if cliente.logado:
+            session["usuario"] = {"nome":cliente.nome, "cpf":cliente.cpf}
+            return redirect("/")
+        else:
+            session.clear()
+            return redirect("/login")
 
 app.run(debug=True)
