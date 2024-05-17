@@ -7,11 +7,11 @@ app.secret_key = "capivara"
 
 @app.route("/")
 def pg_inicial():
-    return render_template("cabecalho-rodape.html")
+    return render_template("cabecalho-rodape.html", campo_titulo="GG TECH HUB")
 
 @app.route("/cadastro-login")
 def pg_cadastrar_form():
-    return render_template("cadastro-login.html")
+    return render_template("cadastro-login.html", campo_titulo="Cadastro ou Login")
 
 @app.route("/cadastro", methods=["POST"])
 def pg_cadastro():
