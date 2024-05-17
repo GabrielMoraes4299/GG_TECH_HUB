@@ -1,4 +1,4 @@
-INSERT INTO tb_produtos (id_produto, nome, foto, id_categoria, preço) VALUES
+INSERT INTO tb_produtos (id_produto, nome, foto, id_categoria, preco) VALUES
 ('7891234567890', 'Smartphone Galaxy S22 Ultra', 'https://a-static.mlcdn.com.br/800x560/smartphone-samsung-galaxy-s23-256gb-preto-5g-8gb-ram-61-cam-tripla-selfie-12mp/magazineluiza/232854100/d21120069fca69fc9edbeeac7a0d9ec8.jpg', 1, 1499.99),
 ('7892345678901', 'Notebook Dell XPS 15', 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/15-3530-intel/media-gallery/silver-plastic/notebook-inspiron-15-3530-nt-plastic-silver-gallery-2.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=606&qlt=100,1&resMode=sharp2&size=606,402&chrss=full', 2, 1999.99),
 ('7893456789012', 'Câmera DSLR Canon EOS R5', 'https://acdn.mitiendanube.com/stores/001/026/951/products/whatsapp-image-2021-01-18-at-16-29-441-13dfe6ee5c93a4f34a16109997999024-480-0.webp', 3, 3499.99),

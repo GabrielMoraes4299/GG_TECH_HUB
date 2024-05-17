@@ -51,5 +51,4 @@ def pg_login():
             session.clear()
             return redirect("/login")
 
-
 app.run(debug=True)

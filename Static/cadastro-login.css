@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
 
+/* --------------------------------------- FORMATAÇÃO DO RCONTEÚDO --------------------------------------- */
+.container-content{
+    height: 62vh;
+}
+
 .container-cadastro-login{
     display: flex;
     justify-content: center;
