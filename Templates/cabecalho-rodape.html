@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../Static/cabecalho-rodape.css">
-    <!-- <link rel="stylesheet" href="{{url_for('static', filename='cabecalho-rodape.css')}}"> -->
-    <title>cabeçalho e rodapé</title>
+    <!-- <link rel="stylesheet" href="../Static/cabecalho-rodape.css"> -->
+    <link rel="stylesheet" href="{{url_for('static', filename='cabecalho-rodape.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Cabeçalho e Rodapé</title>
 </head>
-
-
 <body>
-
     <header>
         <div class="container-header">
             <div class="container-header__parte01">
@@ -19,7 +17,7 @@
                     <li><a href="/sobre-nos">SOBRE NÓS</a></li>
                     <li><a href="/fale-conosco">FALE CONOSCO</a></li>
                     <li><a href="/perguntas-frequentes">PERGUNTAS FREQUENTES</a></li>
-                    <li><button>Crie a sua conta ou faça login</button></li>
+                    <li><a href="/cadastro-login"><button>Crie a sua conta ou faça login</button></a></li>
                 </ul>
             </div>
 
@@ -41,8 +39,14 @@
         </div>
         
     </header>
+    <section>
+        <div class="container-content">
             {% block content %}
             {% endblock %}
+        </div>
+
+    </section>
+
     <footer>
         <div class="container-footer">
             <div class="container-footer__imagem">

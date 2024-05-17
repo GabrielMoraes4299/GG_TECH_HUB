@@ -1,0 +1,122 @@
+{% extends "cabecalho-rodape.html" %}
+{% block content %}
+  <link rel="stylesheet" href="{{url_for('static', filename='pagina-inicial.css')}}">
+<div class="slideshow-container">
+
+
+    <div class="mySlides fade">
+      <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600" style="width:100%">
+      <div class="text"></div>
+    </div>
+  
+    <div class="mySlides fade">
+      <img src="https://images.pexels.com/photos/943096/pexels-photo-943096.jpeg?auto=compress&cs=tinysrgb&w=600" style="width:100%">
+      <div class="text"></div>
+    </div>
+  
+    <div class="mySlides fade">
+      <img src="https://images.pexels.com/photos/459411/pexels-photo-459411.jpeg?auto=compress&cs=tinysrgb&w=600" style="width:100%">
+      <div class="text"></div>
+    </div>
+  
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  <br>
+  
+
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
+    </ul>
+    <br>
+    <br>
+
+    <script>
+      let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+setInterval(function() {
+  plusSlides(1); 
+}, 7000); 
+
+    </script>
+<h1>Adicionados recentemente</h1>
+
+
+<div class="product-box">
+  <img src="" alt="imagem4">
+  <h2>Produto 1</h2>
+  <p>Descrição do produto 1.</p>
+  <p>Preço: $XX.XX</p>
+</div>
+
+<div class="product-box">
+  <img src="" alt="imagem5">
+  <h2>Produto 2</h2>
+  <p>Descrição do produto 2.</p>
+  <p>Preço: $XX.XX</p>
+</div>
+
+<div class="product-box">
+  <img src="" alt="imagem6">
+  <h2>Produto 3</h2>
+  <p>Descrição do produto 3.</p>
+  <p>Preço: $XX.XX</p>
+</div>
+
+<div class="product-section"></div> 
+
+<h1>Mais vendidos</h1>
+
+
+<div class="product-box">
+  <img src="" alt="imagem4">
+  <h2>Produto 1</h2>
+  <p>Descrição do produto 1.</p>
+  <p>Preço: $XX.XX</p>
+</div>
+
+<div class="product-box">
+  <img src="" alt="imagem5">
+  <h2>Produto 2</h2>
+  <p>Descrição do produto 2.</p>
+  <p>Preço: $XX.XX</p>
+</div>
+
+<div class="product-box">
+  <img src="" alt="imagem6">
+  <h2>Produto 3</h2>
+  <p>Descrição do produto 3.</p>
+  <p>Preço: $XX.XX</p>
+</div>
+
+    {% endblock %}
