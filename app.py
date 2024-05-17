@@ -51,4 +51,8 @@ def pg_login():
             session.clear()
             return redirect("/login")
 
+@app.route("/produto-individual")
+def produto_individual():
+    return render_template("produto-individual.html", campo_titulo="Produto Individual")
+
 app.run(debug=True)

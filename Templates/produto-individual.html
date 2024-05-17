@@ -1,30 +1,40 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produto_individual</title>
+{% extends "cabecalho-rodape.html" %}
+{% block content %}
+<link rel="stylesheet" href="{{url_for('static', filename='produto-individual.css')}}">    
 
-</head>
-<body>
-    
-    <div class="mostrar_produto">
-        <div>
+    <div class="container-produto">
+        <div class="container-produto__img">
+            <img src="" alt="Imagem do produto">
+        </div>
+        
+        <div class="container-produto__info">
             <h1>Nome do produto</h1>
             <h2>R$: 0,00</h2>
             <h3>Disponível</h3>
-        </div>
-        
-        <div class="imagem_produto">
-            <img src="" alt="Imagem do produto">
+            <button class="btn_produto"></button>
         </div>
     </div>
     
-    <input type="text" placeholder="Deixe um comentário">
-    <label for="text">Comentários</label>
-    <div>
-        <!-- Comentários vão aqui -->
+    <form class="inputs-comentarios">
+        <label for="inputComentario">Escreva seu comentário</label>
+        <input type="text" id="inputComentario" placeholder="Deixe um comentário">
+    
+        <label for="inputAvaliacao">Dê a sua avaliação</label>
+        <input type="number" id="inputAvaliacao" min="0" max="100">
+    </form>
+    
+
+    <div class="container-comentarios">
+        <div class="container-comentario">
+            <div class="container-comentario__foto">
+                <img src="" alt="Foto de Perfil">
+            </div>
+
+            <div class="container-comentario__conteudo">
+                <p class="conteudo_comentario">Olá sou o Gabriel e gostei muito do produto</p>
+                <p class="avaliação_comentario">98</p>
+            </div>
+        </div>
     </div>
-</body>
-</html>
+{% endblock %}
 
