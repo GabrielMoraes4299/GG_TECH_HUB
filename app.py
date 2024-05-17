@@ -13,7 +13,7 @@ def pg_inicial():
 def pg_cadastrar_form():
     return render_template("cadastro-login.html")
 
-@app.route("/cadastro-login", methods=["POST"])
+@app.route("/cadastro", methods=["POST"])
 def pg_cadastro():
     dados = request.get_json()
     cpf = dados["cpf"]
@@ -30,26 +30,26 @@ def pg_cadastro():
     else:
         return {'mensagem':'ERRO'}, 500
 
-# @app.route("/cadastro-login", methods=["GET","POST"])
-# def pg_login():
-#     cliente = Cliente()
-#     if request.method == "GET":
-#         if session.get("usuario","erro") == "Autenticado":   
-#             return redirect("/")
-#         else:
-#             return redirect("cadastro-login.html")
-#     else:
-#         email = request.form["email-login"]
-#         senha = request.form["senha-login"]
+@app.route("/login", methods=["GET","POST"])
+def pg_login():
+    cliente = Cliente()
+    if request.method == "GET":
+        if session.get("usuario","erro") == "Autenticado":   
+            return redirect("/")
+        else:
+            return redirect("cadastro-login.html")
+    else:
+        email = request.form["email-login"]
+        senha = request.form["senha-login"]
 
-#         cliente.logar(email, senha)
+        cliente.logar(email, senha)
 
-#         if cliente.logado:
-#             session["usuario"] = {"nome":cliente.nome, "cpf":cliente.cpf}
-#             return redirect("/")
-#         else:
-#             session.clear()
-#             return redirect("/login")
+        if cliente.logado:
+            session["usuario"] = {"nome":cliente.nome, "cpf":cliente.cpf}
+            return redirect("/")
+        else:
+            session.clear()
+            return redirect("/login")
 
 
 app.run(debug=True)
