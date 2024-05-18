@@ -7,11 +7,11 @@ app.secret_key = "capivara"
 
 @app.route("/")
 def pg_inicial():
-    return render_template("Pagina-inicial.html")
+    return render_template("Pagina-inicial.html", campo_titulo="GG TECH HUB")
 
 @app.route("/cadastro-login")
 def pg_cadastrar_form():
-    return render_template("cadastro-login.html")
+    return render_template("cadastro-login.html", campo_titulo="Cadastro ou Login")
 
 @app.route("/cadastro", methods=["POST"])
 def pg_cadastro():
@@ -50,5 +50,9 @@ def pg_login():
         else:
             session.clear()
             return redirect("/login")
+
+@app.route("/produto-individual")
+def produto_individual():
+    return render_template("produto-individual.html", campo_titulo="Produto Individual")
 
 app.run(debug=True)

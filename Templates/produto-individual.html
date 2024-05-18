@@ -1,29 +1,55 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produto_individual</title>
+{% extends "cabecalho-rodape.html" %}
+{% block content %}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> 
+<link rel="stylesheet" href="{{url_for('static', filename='produto-individual.css')}}">
 
-    <div class="mostrar_produto">
-        <h1>nome do produto</h1>
+    <div class="container-produto">
+        <div class="container-produto__img">
+            <img src="https://a-static.mlcdn.com.br/800x560/smartphone-samsung-galaxy-s23-256gb-preto-5g-8gb-ram-61-cam-tripla-selfie-12mp/magazineluiza/232854100/d21120069fca69fc9edbeeac7a0d9ec8.jpg" alt="Imagem do produto">
+        </div>
         
-        <div class="imagem_produto">
-        <img src="" alt="">
-    </div>
-        <h2>R$: 0,00</h2>
+        <div class="container-produto__info">
+            <div class="container-textos">
+                <h1>Nome do produto</h1>
+                <h2>80/100</h2>
+                <h2>R$: 0,00</h2>
+                <h3>Disponível</h3>
+            </div>
+            <hr>
+            <div class="container-btns">
+                <button class="btn-addcarrinho">Adicionar ao Carrinho</button>
+                <button class="btn-comprar">Comprar</button>
+            </div>
 
-        <h3>disponível</h3>
-
+        </div>
     </div>
     
-    <input type="text" placeholder="Deixe um comentário">
-
-    <label for="text">Comentários</label>
-
-    <div>
-
-
-
-        
+    <div class="inputs-comentarios">
+        <h1>Envie seu comentário e sua avaliação</h1>
+        <div class="input-comentario">
+            <label for="inputComentario"><span class="material-symbols-outlined">chat</span></label>
+            <input type="text" id="inputComentario" placeholder="Deixe um comentário">
+            <input type="number" id="inputAvaliacao" min="0" max="100" step="10" value="0">
+            <a id="btn-comentario" href="/produto-individual"><span class="material-symbols-outlined">send</span></a>
+        </div>
     </div>
+    
+
+    <div class="container-comentarios">
+        <h1>Comentários</h1>
+        <div class="container-comentario">
+            <div class="container-comentario__foto">
+                <figure>
+                    <span class="material-symbols-outlined">person</span>
+                </figure>
+                <h1>Gabriel Chagas</h1>
+            </div>
+
+            <div class="container-comentario__conteudo">
+                <p class="conteudo_comentario">Olá sou o Gabriel e gostei muito do produto</p>
+                <p class="avaliacao_comentario">98</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
+/* Formatação do container do produto */
+.container-produto{
+    display: flex;
+    width: 80vw;
+    background-color: rgb(210, 210, 210);
+    margin: 30px auto;
+}
+
+.container-produto__img{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    width: 50%;
+    padding: 50px;
+}
+
+.container-produto__img img{
+    width: 80%;
+}
+
+.container-produto__info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 80px;
+    width: 50%;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: rgb(198, 198, 198);
+}
+
+.container-produto__info hr{
+    margin: 10px 0;
+    border: none;
+    height: 2px;
+    background-color: blue;
+}
+
+.container-textos{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-textos h1{
+    font-size: 50px;
+}
+
+.container-textos h2{
+    font-size: 30px;
+}
+
+.container-textos h3{
+    font-size: 20px;
+}
+
+.container-btns{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+}
+
+.container-btns .btn-addcarrinho{
+    width: 50%;
+    height: 2rem;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(58, 58, 255);
+    color: white;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    cursor: pointer;
+}
+
+.container-btns .btn-addcarrinho:hover{
+    background-color: rgb(112, 112, 255);
+}
+
+.container-btns .btn-comprar{
+    width: 50%;
+    height: 2rem;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(58, 58, 255);
+    color: white;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    cursor: pointer;
+}
+
+.container-btns .btn-comprar:hover{
+    background-color: rgb(112, 112, 255);
+}
+
+/* ---------------------Formatação dos inputs do comentário--------------------- */
+.inputs-comentarios{
+    width: 80vw;
+    height: 15rem;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(225, 225, 225);
+}
+
+.inputs-comentarios h1{
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+}
+
+.inputs-comentarios label .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    color: gray;
+    font-size: 60px;
+}
+
+.inputs-comentarios a .material-symbols-outlined {
+    cursor: pointer;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    color: gray;
+    font-size: 60px;
+}
+
+.inputs-comentarios label{
+    display: flex;
+    text-align: center;
+}
+
+.input-comentario{
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.input-comentario #inputComentario{
+    width: 50rem;
+    height: 50%;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.input-comentario #inputAvaliacao{
+    height: 50%;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+    font-size: 2rem;
+    width: 5.5rem;
+}
+
+/* ---------------------Comentários--------------------- */
+.container-comentarios{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    margin: 30px auto;
+    background-color: rgb(225, 225, 225);
+    padding: 20px;
+    gap: 20px;
+}
+
+.container-comentarios h1{
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
+    text-align: center;
+}
+
+.container-comentario{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    width: 80%;
+    height: 80%;
+    background-color: white;
+}
+
+.container-comentario__foto{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    width: 80%;
+    height: 5rem;
+}
+
+.container-comentario__foto figure{
+    border: 1px solid black;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-comentario__foto figure .material-symbols-outlined{
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    color: black;
+    font-size: 60px;
+}
+
+.container-comentario__conteudo{
+    width: 95%;
+    padding: 20px;
+    margin: 20px;
+    font-size: 20px;
+    border: 1px solid black;
+    font-family: 'Trebuchet MS', sans-serif;
+}
+
+.avaliacao_comentario{
+    position: relative;
+    left: 99%;
+}
