@@ -102,7 +102,7 @@
 /* ---------------------Formatação dos inputs do comentário--------------------- */
 .inputs-comentarios{
     width: 80vw;
-    height: 25rem;
+    height: 15rem;
     margin: 30px auto;
     display: flex;
     flex-direction: column;
@@ -111,32 +111,42 @@
     background-color: rgb(225, 225, 225);
 }
 
-.inputs-comentarios label{
-    text-align: center;
-}
-
-.inputs-comentarios button{
-    width: 30%;
-    height: 5rem;
-    margin: 20px;
-    border: none;
-    border-radius: 20px;
-    background-color: rgb(58, 58, 255);
+.inputs-comentarios h1{
     font-family: "Poetsen One", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 20px;
-    cursor: pointer;
+    font-size: 30px;
 }
 
-.inputs-comentarios button:hover{
-    background-color: rgb(112, 112, 255);
+.inputs-comentarios label .material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    color: gray;
+    font-size: 60px;
+}
+
+.inputs-comentarios a .material-symbols-outlined {
+    cursor: pointer;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    color: gray;
+    font-size: 60px;
+}
+
+.inputs-comentarios label{
+    display: flex;
+    text-align: center;
 }
 
 .input-comentario{
     height: 50%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: "Poetsen One", sans-serif;
@@ -144,35 +154,23 @@
     font-style: normal;
     font-size: 30px;
     padding: 20px;
-    cursor: pointer;
+    gap: 20px;
 }
 
-.input-comentario input{
+.input-comentario #inputComentario{
     width: 50rem;
     height: 50%;
     font-size: 20px;
     padding: 10px;
 }
 
-.input-avaliacao{
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-family: "Poetsen One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 30px;
-    padding: 20px;
-    cursor: pointer;
-}
-
-.input-avaliacao input{
-    width: 50rem;
+.input-comentario #inputAvaliacao{
     height: 50%;
     font-size: 20px;
     padding: 10px;
+    text-align: center;
+    font-size: 2rem;
+    width: 5.5rem;
 }
 
 /* ---------------------Comentários--------------------- */
@@ -189,6 +187,10 @@
 }
 
 .container-comentarios h1{
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 30px;
     text-align: center;
 }
 
@@ -210,10 +212,23 @@
     height: 5rem;
 }
 
-.container-comentario__foto img{
+.container-comentario__foto figure{
     border: 1px solid black;
     width: 5rem;
     height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-comentario__foto figure .material-symbols-outlined{
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    color: black;
+    font-size: 60px;
 }
 
 .container-comentario__conteudo{
@@ -222,6 +237,7 @@
     margin: 20px;
     font-size: 20px;
     border: 1px solid black;
+    font-family: 'Trebuchet MS', sans-serif;
 }
 
 .avaliacao_comentario{
