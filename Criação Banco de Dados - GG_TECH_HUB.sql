@@ -21,10 +21,11 @@ CREATE TABLE tb_categorias(
 
 CREATE TABLE tb_produtos(
 	id_produto BIGINT PRIMARY KEY,
-    nome VARCHAR(255) NOT NULL,
-    foto VARCHAR(400) NOT NULL,
-    id_categoria INT NOT NULL,
-    preco VARCHAR(50) NOT NULL,
+    	nome VARCHAR(255) NOT NULL,
+    	foto VARCHAR(400) NOT NULL,
+    	id_categoria INT NOT NULL,
+    	preco VARCHAR(50) NOT NULL,
+	num_vendas INT NOT NULL,
     CONSTRAINT fk_produtos_categorias FOREIGN KEY (id_categoria) REFERENCES tb_categorias(id_categoria)
 );
 
