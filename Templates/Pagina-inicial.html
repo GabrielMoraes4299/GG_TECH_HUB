@@ -74,9 +74,11 @@ setInterval(function() {
 <div class="container-recentes">
   {% for i in campo_produtos_total %}
   <div class="product-box">
-    <img src="{{i[1]}}" alt="imagem4">
+    <div class="product-box__img">
+      <img src="{{i[1]}}" alt="imagem4">
+    </div>
     <h2>{{i[0]}}</h2>
-    <p>{{i[2]}}</p>
+    <p>R$ {{i[2]}}</p>
     <a href="#"><button>Visitar</button></a>
   </div>
   {% endfor %}
@@ -86,10 +88,12 @@ setInterval(function() {
 
 <h1>Mais vendidos</h1>
 
-<div class="container-recentes">
+<div class="container-vendidos">
   {% for i in campo_produtos_vendas %}
   <div class="product-box">
-    <img src="{{i[1]}}" alt="imagem4">
+    <div class="product-box__img">
+      <img src="{{i[1]}}" alt="imagem4">
+    </div>
     <h2>{{i[0]}}</h2>
     <p>{{i[2]}}</p>
     <a href=""><button>Visitar</button></a>
