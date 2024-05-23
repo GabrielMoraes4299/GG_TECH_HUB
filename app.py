@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, session, jsonify
+from conexao import Connection
 from cliente import Cliente
 
 app = Flask(__name__)
@@ -7,7 +8,24 @@ app.secret_key = "capivara"
 
 @app.route("/")
 def pg_inicial():
-    return render_template("Pagina-inicial.html", campo_titulo="GG TECH HUB")
+    myBD = Connection.conectar()
+
+    mycursor = myBD.cursor()
+
+    mycursor.execute(f"SELECT nome, foto, preco FROM tb_produtos")
+
+    resultado_total = mycursor.fetchall()
+
+    mycursor.execute(f"SELECT nome, foto, preco FROM tb_produtos ORDER BY num_vendas")
+
+    resultado_vendas = mycursor.fetchall()
+
+    # lista_produtos = []
+
+    # for x  in resultado:
+    #     lista_produtos.append({"nome":x[0], "foto":x[1], "preco":x[2]})
+
+    return render_template("Pagina-inicial.html", campo_titulo="GG TECH HUB", campo_produtos_total = resultado_total, campo_produtos_vendas = resultado_vendas)
 
 @app.route("/cadastro-login")
 def pg_cadastrar_form():

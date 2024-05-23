@@ -97,8 +97,7 @@
     transition: all 0.3s ease; 
   }
   .product-box:hover {
-    width: 350px; 
-    height: 350px;
+    width: 310px; 
   }
   .product-box img {
     width: 80%; 

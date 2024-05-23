@@ -34,7 +34,7 @@
     <br>
     <br>
 
-    <script>
+<script>
       let slideIndex = 1;
 showSlides(slideIndex);
 
@@ -67,43 +67,34 @@ setInterval(function() {
   plusSlides(1); 
 }, 7000); 
 
-    </script>
+</script>
 
 <h1>Adicionados recentemente</h1>
 
-{% for i in campo_dados %}
-<div class="product-box">
-  <img src="" alt="imagem4">
-  <h2>Produto 1</h2>
-  <p>Descrição do produto 1.</p>
-  <p>Preço: $XX.XX</p>
+<div class="container-recentes">
+  {% for i in campo_produtos_total %}
+  <div class="product-box">
+    <img src="{{i[1]}}" alt="imagem4">
+    <h2>{{i[0]}}</h2>
+    <p>{{i[2]}}</p>
+    <a href="#"><button>Visitar</button></a>
+  </div>
+  {% endfor %}
 </div>
-{% endfor %}
 
 <div class="product-section"></div> 
 
 <h1>Mais vendidos</h1>
 
-
-<div class="product-box">
-  <img src="" alt="imagem4">
-  <h2>Produto 1</h2>
-  <p>Descrição do produto 1.</p>
-  <p>Preço: $XX.XX</p>
+<div class="container-recentes">
+  {% for i in campo_produtos_vendas %}
+  <div class="product-box">
+    <img src="{{i[1]}}" alt="imagem4">
+    <h2>{{i[0]}}</h2>
+    <p>{{i[2]}}</p>
+    <a href=""><button>Visitar</button></a>
+  </div>
+  {% endfor %}
 </div>
 
-<div class="product-box">
-  <img src="" alt="imagem5">
-  <h2>Produto 2</h2>
-  <p>Descrição do produto 2.</p>
-  <p>Preço: $XX.XX</p>
-</div>
-
-<div class="product-box">
-  <img src="" alt="imagem6">
-  <h2>Produto 3</h2>
-  <p>Descrição do produto 3.</p>
-  <p>Preço: $XX.XX</p>
-</div>
-
-    {% endblock %}
+{% endblock %}
