@@ -48,16 +48,32 @@ class Cliente:
         else:
             self.logado = False
     
-    def listar_contatos(self):
+    def mostrar_produtos(self):
         myBD = Connection.conectar()
 
         mycursor = myBD.cursor()
 
-        mycursor.execute(f"SELECT nome, tel FROM tb_usuario")
+        mycursor.execute(f"SELECT nome, foto, preco FROM tb_usuario ORDER BY DESC")
 
         resultado = mycursor.fetchall()
 
-        for x in resultado:
-            print("--------------------")
-            print(f"| {x[0]} | {x[1]} |")
-            print("--------------------")
+        lista_produtos = []
+
+        for x  in resultado:
+            lista_produtos.append({"nome":x[0], "foto":x[1], "preco":x[2]})
+        
+        return (lista_produtos)
+
+    # def listar_contatos(self):
+    #     myBD = Connection.conectar()
+
+    #     mycursor = myBD.cursor()
+
+    #     mycursor.execute(f"SELECT nome, tel FROM tb_usuario")
+
+    #     resultado = mycursor.fetchall()
+
+    #     for x in resultado:
+    #         print("--------------------")
+    #         print(f"| {x[0]} | {x[1]} |")
+    #         print("--------------------")
