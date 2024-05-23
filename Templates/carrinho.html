@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Static/carrinho.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Carrinho</title>
-
 </head>
 <body>
 
@@ -17,6 +17,7 @@
                 <th>Preço</th>
                 <th>Quantidade</th>
                 <th>Subtotal</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -25,52 +26,23 @@
                 <td class="preco">R$ 100,00</td>
                 <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
                 <td class="subtotal">R$ 100,00</td>
+                <td class="acoes"><i class="fas fa-trash-alt" onclick="removerProduto(this)"></i></td>
             </tr>
             <tr class="produto">
                 <td>Nome do Produto 2</td>
                 <td class="preco">R$ 100,00</td>
                 <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
                 <td class="subtotal">R$ 100,00</td>
+                <td class="acoes"><i class="fas fa-trash-alt" onclick="removerProduto(this)"></i></td>
             </tr>
-            <tr class="produto">
-                <td>Nome do Produto 3</td>
-                <td class="preco">R$ 100,00</td>
-                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
-                <td class="subtotal">R$ 100,00</td>
-            </tr>
-            <tr class="produto">
-                <td>Nome do Produto 4</td>
-                <td class="preco">R$ 100,00</td>
-                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
-                <td class="subtotal">R$ 100,00</td>
-            </tr>
-            <tr class="produto">
-                <td>Nome do Produto 5</td>
-                <td class="preco">R$ 100,00</td>
-                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
-                <td class="subtotal">R$ 100,00</td>
-            </tr>
-            <tr class="produto">
-                <td>Nome do Produto 6</td>
-                <td class="preco">R$ 100,00</td>
-                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
-                <td class="subtotal">R$ 100,00</td>
-            </tr>
-            <tr class="produto">
-                <td>Nome do Produto 7</td>
-                <td class="preco">R$ 100,00</td>
-                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
-                <td class="subtotal">R$ 100,00</td>
-            </tr>
-            <!-- Add more products as needed -->
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3">Total</td>
-                <td id="total">R$ 700,00</td>
+                <td colspan="4">Total</td>
+                <td id="total">R$ 200,00</td>
             </tr>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <button class="comprar-tudo">Comprar Tudo</button>
                 </td>
             </tr>
@@ -97,6 +69,12 @@
             total += subtotal;
         });
         document.getElementById('total').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    }
+
+    function removerProduto(element) {
+        const produtoRow = element.closest('.produto');
+        produtoRow.remove();
+        atualizarTotal();
     }
 
     window.onload = atualizarTotal;
