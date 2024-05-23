@@ -3,34 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Static/carrinho.css">
     <title>Carrinho</title>
+
 </head>
 <body>
 
-<table>
-    <thead>
-        <tr>
-            <th>Produto</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-            <th>Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Nome do Produto</td>
-            <td>R$ 100,00</td>
-            <td><input type="number" value="1"></td>
-            <td>R$ 100,00</td>
-        </tr>
-        <tr>
-            <td>Nome do Produto</td>
-            <td>R$ 100,00</td>
-            <td><input type="number" value="1"></td>
-            <td>R$ 100,00</td>
-        </tr>
-    </tbody>
-</table>
+<div class="table-container">
+    <table class="tabela">
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="produto">
+                <td>Nome do Produto 1</td>
+                <td class="preco">R$ 100,00</td>
+                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
+                <td class="subtotal">R$ 100,00</td>
+            </tr>
+            <tr class="produto">
+                <td>Nome do Produto 2</td>
+                <td class="preco">R$ 100,00</td>
+                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
+                <td class="subtotal">R$ 100,00</td>
+            </tr>
+            <tr class="produto">
+                <td>Nome do Produto 3</td>
+                <td class="preco">R$ 100,00</td>
+                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
+                <td class="subtotal">R$ 100,00</td>
+            </tr>
+            <tr class="produto">
+                <td>Nome do Produto 4</td>
+                <td class="preco">R$ 100,00</td>
+                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
+                <td class="subtotal">R$ 100,00</td>
+            </tr>
+            <tr class="produto">
+                <td>Nome do Produto 5</td>
+                <td class="preco">R$ 100,00</td>
+                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
+                <td class="subtotal">R$ 100,00</td>
+            </tr>
+            <tr class="produto">
+                <td>Nome do Produto 6</td>
+                <td class="preco">R$ 100,00</td>
+                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
+                <td class="subtotal">R$ 100,00</td>
+            </tr>
+            <tr class="produto">
+                <td>Nome do Produto 7</td>
+                <td class="preco">R$ 100,00</td>
+                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
+                <td class="subtotal">R$ 100,00</td>
+            </tr>
+            <!-- Add more products as needed -->
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total</td>
+                <td id="total">R$ 700,00</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <button class="comprar-tudo">Comprar Tudo</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script>
+    function atualizarSubtotal(element) {
+        const produtoRow = element.closest('.produto');
+        const precoTexto = produtoRow.querySelector('.preco').textContent;
+        const preco = parseFloat(precoTexto.replace('R$ ', '').replace(',', '.'));
+        const quantidade = parseInt(element.value);
+        const subtotal = preco * quantidade;
+        produtoRow.querySelector('.subtotal').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+        atualizarTotal();
+    }
+
+    function atualizarTotal() {
+        let total = 0;
+        document.querySelectorAll('.subtotal').forEach(subtotalElement => {
+            const subtotalTexto = subtotalElement.textContent;
+            const subtotal = parseFloat(subtotalTexto.replace('R$ ', '').replace(',', '.'));
+            total += subtotal;
+        });
+        document.getElementById('total').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+    }
+
+    window.onload = atualizarTotal;
+</script>
 
 </body>
 </html>

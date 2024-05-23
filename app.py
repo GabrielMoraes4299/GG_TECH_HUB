@@ -55,4 +55,8 @@ def pg_login():
 def produto_individual():
     return render_template("produto-individual.html", campo_titulo="Produto Individual")
 
+@app.route("/carrinho")
+def pg_cadastrar_form():
+    return render_template("carrinho.html", campo_titulo="carrinho de compras")
+
 app.run(debug=True)
