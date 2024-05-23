@@ -156,6 +156,10 @@
   cursor: pointer;
 }
 
+h1{
+  margin: 20px;
+}
+
 .product-box button:hover{
   background-color: rgb(112, 112, 255);
 }
