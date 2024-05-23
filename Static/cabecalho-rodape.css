@@ -133,15 +133,14 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
     width: 50%;
 }
 
 .container-footer__icones a{
     display: flex;
     align-items: center;
-    width: 25%;
-    border: 1px solid black;
+    width: 100%;
 }
 
 .container-footer__icones img{

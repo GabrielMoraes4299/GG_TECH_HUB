@@ -3,7 +3,6 @@
   <link rel="stylesheet" href="{{url_for('static', filename='pagina-inicial.css')}}">
 <div class="slideshow-container">
 
-
     <div class="mySlides fade">
       <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600" style="width:100%">
       <div class="text"></div>
@@ -69,29 +68,17 @@ setInterval(function() {
 }, 7000); 
 
     </script>
+
 <h1>Adicionados recentemente</h1>
 
-
+{% for i in campo_dados %}
 <div class="product-box">
   <img src="" alt="imagem4">
   <h2>Produto 1</h2>
   <p>Descrição do produto 1.</p>
   <p>Preço: $XX.XX</p>
 </div>
-
-<div class="product-box">
-  <img src="" alt="imagem5">
-  <h2>Produto 2</h2>
-  <p>Descrição do produto 2.</p>
-  <p>Preço: $XX.XX</p>
-</div>
-
-<div class="product-box">
-  <img src="" alt="imagem6">
-  <h2>Produto 3</h2>
-  <p>Descrição do produto 3.</p>
-  <p>Preço: $XX.XX</p>
-</div>
+{% endfor %}
 
 <div class="product-section"></div> 
 
