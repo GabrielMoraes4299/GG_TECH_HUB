@@ -12,11 +12,11 @@ def pg_inicial():
 
     mycursor = myBD.cursor()
 
-    mycursor.execute(f"SELECT nome, foto, preco FROM tb_produtos")
+    mycursor.execute(f"SELECT id_produto, nome, foto, preco FROM tb_produtos")
 
     resultado_total = mycursor.fetchall()
 
-    mycursor.execute(f"SELECT nome, foto, preco FROM tb_produtos ORDER BY num_vendas")
+    mycursor.execute(f"SELECT id_produto, nome, foto, preco FROM tb_produtos ORDER BY num_vendas")
 
     resultado_vendas = mycursor.fetchall()
 
@@ -69,8 +69,32 @@ def pg_login():
             session.clear()
             return redirect("/login")
 
-@app.route("/produto-individual")
-def produto_individual():
-    return render_template("produto-individual.html", campo_titulo="Produto Individual")
+@app.route("/produto-individual/<codigo>")
+def pg_produto(codigo):
+    myBD = Connection.conectar()
 
+    mycursor = myBD.cursor()
+
+    mycursor.execute(f"SELECT nome, foto, preco, descricao FROM tb_produtos WHERE id_produto = {codigo};")
+
+    dados = mycursor.fetchone()
+    myBD.close()
+    
+    return render_template("produto-individual.html", campo_titulo="Produto Individual", campo_nome = dados[0], campo_foto = dados[1], campo_preco = dados[2], campo_descricao = dados[3])
+
+@app.route("/enviar_comentario", methods=["POST"])
+def enviar_mensagem():
+    dados = request.get_json()
+    conteudo_comentario = dados["conteudo_comentario"]
+    avaliacao = dados["avaliacao"]
+    id_produto = dados["id_produto"]
+    cpf = dados["cpf"]
+
+    # nome_usuario = session["usuario"]["nome"]
+    # telefone_usuario = session["usuario"]["cpf"]
+    # chat = Chat(nome_usuario, telefone_usuario)
+
+    # chat.enviar_mensagem(conteudo_mensagem, contato)
+
+    return jsonify({}), 200
 app.run(debug=True)
