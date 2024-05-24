@@ -26,6 +26,8 @@ CREATE TABLE tb_produtos(
     	id_categoria INT NOT NULL,
     	preco VARCHAR(50) NOT NULL,
 	num_vendas INT NOT NULL,
+    descricao VARCHAR(200),
+    hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT fk_produtos_categorias FOREIGN KEY (id_categoria) REFERENCES tb_categorias(id_categoria)
 );
 
@@ -35,8 +37,6 @@ CREATE TABLE tb_comentarios(
     CPF_cliente VARCHAR(11) NOT NULL,
     conteudo VARCHAR(300) NOT NULL,
     avaliacao TINYINT NOT NULL,
-    CONSTRAINT fk_comentarios_produtos FOREIGN KEY (id_produto) REFERENCES tb_produtos(id_produto),
-    CONSTRAINT fk_comentarios_clientes FOREIGN KEY (CPF_cliente) REFERENCES tb_clientes(CPF)
 );
 
 CREATE TABLE tb_carrinho (
