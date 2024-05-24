@@ -12,7 +12,7 @@ def pg_inicial():
 
     mycursor = myBD.cursor()
 
-    mycursor.execute(f"SELECT id_produto, nome, foto, preco FROM tb_produtos")
+    mycursor.execute(f"SELECT id_produto, nome, foto, preco FROM tb_produtos ORDER BY hora DESC")
 
     resultado_total = mycursor.fetchall()
 
@@ -75,12 +75,13 @@ def pg_produto(codigo):
 
     mycursor = myBD.cursor()
 
-    mycursor.execute(f"SELECT nome, foto, preco, descricao FROM tb_produtos WHERE id_produto = {codigo};")
+    mycursor.execute(f"SELECT nome, foto, preco, descricao, id_produto FROM tb_produtos WHERE id_produto = {codigo};")
 
     dados = mycursor.fetchone()
-    myBD.close()
     
-    return render_template("produto-individual.html", campo_titulo="Produto Individual", campo_nome = dados[0], campo_foto = dados[1], campo_preco = dados[2], campo_descricao = dados[3])
+    myBD.close()
+
+    return render_template("produto-individual.html", campo_titulo="Produto Individual", campo_nome = dados[0], campo_foto = dados[1], campo_preco = dados[2], campo_descricao = dados[3], campo_codigo = dados[4])
 
 @app.route("/enviar_comentario", methods=["POST"])
 def enviar_mensagem():
@@ -88,13 +89,17 @@ def enviar_mensagem():
     conteudo_comentario = dados["conteudo_comentario"]
     avaliacao = dados["avaliacao"]
     id_produto = dados["id_produto"]
-    cpf = dados["cpf"]
+    cpf = session["usuario"]["cpf"]
 
-    # nome_usuario = session["usuario"]["nome"]
-    # telefone_usuario = session["usuario"]["cpf"]
-    # chat = Chat(nome_usuario, telefone_usuario)
+    print(f"{conteudo_comentario}, {avaliacao}, {id_produto}, {cpf}")
 
-    # chat.enviar_mensagem(conteudo_mensagem, contato)
+    myBD = Connection.conectar()
+
+    mycursor = myBD.cursor()
+
+    mycursor.execute(f"INSERT INTO tb_comentarios (id_produto, CPF_cliente, conteudo, avaliacao) VALUES ('{id_produto}', '{cpf}', '{conteudo_comentario}', '{avaliacao}');")
+
+    myBD.commit()
 
     return jsonify({}), 200
 app.run(debug=True)
