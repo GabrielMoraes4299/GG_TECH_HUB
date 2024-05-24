@@ -75,11 +75,11 @@ setInterval(function() {
   {% for i in campo_produtos_total %}
   <div class="product-box">
     <div class="product-box__img">
-      <img src="{{i[1]}}" alt="imagem4">
+      <img src="{{i[2]}}" alt="imagem4">
     </div>
-    <h2>{{i[0]}}</h2>
-    <p>R$ {{i[2]}}</p>
-    <a href="#"><button>Visitar</button></a>
+    <h2>{{i[1]}}</h2>
+    <p>R$ {{i[3]}}</p>
+    <a href="/produto-individual/{{i[0]}}"><button>Visitar</button></a>
   </div>
   {% endfor %}
 </div>
@@ -92,11 +92,11 @@ setInterval(function() {
   {% for i in campo_produtos_vendas %}
   <div class="product-box">
     <div class="product-box__img">
-      <img src="{{i[1]}}" alt="imagem4">
+      <img src="{{i[2]}}" alt="imagem4">
     </div>
-    <h2>{{i[0]}}</h2>
-    <p>{{i[2]}}</p>
-    <a href=""><button>Visitar</button></a>
+    <h2>{{i[1]}}</h2>
+    <p>{{i[3]}}</p>
+    <a href="/produto-individual/{{i[0]}}"><button>Visitar</button></a>
   </div>
   {% endfor %}
 </div>
