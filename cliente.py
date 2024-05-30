@@ -34,17 +34,20 @@ class Cliente:
 
         mycursor = myBD.cursor()
 
+        self.email = email
         self.senha = senha
         senha_criptografada = sha256(self.senha.encode()).hexdigest()
 
-        mycursor.execute(f"SELECT email, senha FROM tb_clientes WHERE email = '{email}' AND BINARY senha = '{senha_criptografada}';")
+        mycursor.execute(f"SELECT CPF, nome, email, senha FROM tb_clientes WHERE email = '{email}' AND BINARY senha = '{senha_criptografada}';")
 
         resultado = mycursor.fetchone()
 
         if resultado != None:
             self.logado = True
-            self.email = resultado[0]
-            self.senha = resultado[1]
+            self.cpf = resultado[0]
+            self.nome = resultado[1]
+            self.email = resultado[2]
+            self.senha = resultado[3]
         else:
             self.logado = False
     

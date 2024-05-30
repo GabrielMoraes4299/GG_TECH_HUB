@@ -30,10 +30,9 @@
             <label for="inputComentario"><span class="material-symbols-outlined">chat</span></label>
             <input type="text" id="inputComentario" placeholder="Deixe um comentário">
             <input type="number" id="inputAvaliacao" min="0" max="100" step="10" value="0">
-            <a id="btn-comentario" href="/produto-individual"><span class="material-symbols-outlined">send</span></a>
+            <button id="btn-comentario" onclick="enviar_comentario()"><span class="material-symbols-outlined">send</span></button>
         </div>
     </div>
-    
 
     <div class="container-comentarios">
         <h1>Comentários</h1>
@@ -51,5 +50,31 @@
             </div>
         </div>
     </div>
+
+<script type="text/javascript">
+    function enviar_comentario(){
+        var dados = {
+            conteudo_comentario: $('#inputComentario').val(),
+            avaliacao: $('#inputAvaliacao').val(),
+            id_produto: '{{campo_codigo}}'
+        }
+
+        document.querySelector('#inputComentario').value = '';
+        document.querySelector('#inputAvaliacao').value = 0;
+
+        $.ajax({
+            url: '/enviar_comentario',
+            type: 'POST',
+            data: JSON.stringify(dados),
+            contentType: 'application/json',
+            success: function(){
+                
+            },
+            error: function(){
+                
+            }
+        })
+    }
+</script>
 {% endblock %}
 
