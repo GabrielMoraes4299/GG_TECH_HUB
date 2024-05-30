@@ -173,6 +173,10 @@
     width: 5.5rem;
 }
 
+#btn-comentario{
+    cursor: pointer;
+}
+
 /* ---------------------Comentários--------------------- */
 .container-comentarios{
     display: flex;

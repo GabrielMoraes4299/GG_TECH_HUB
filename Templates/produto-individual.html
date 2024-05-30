@@ -59,13 +59,16 @@
             id_produto: '{{campo_codigo}}'
         }
 
+        document.querySelector('#inputComentario').value = '';
+        document.querySelector('#inputAvaliacao').value = 0;
+
         $.ajax({
             url: '/enviar_comentario',
             type: 'POST',
             data: JSON.stringify(dados),
             contentType: 'application/json',
             success: function(){
-
+                
             },
             error: function(){
                 

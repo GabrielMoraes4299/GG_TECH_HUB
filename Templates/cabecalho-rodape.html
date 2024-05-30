@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="stylesheet" href="../Static/cabecalho-rodape.css"> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="{{url_for('static', filename='cabecalho-rodape.css')}}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <title>{{campo_titulo}}</title>
@@ -17,7 +18,13 @@
                     <li><a href="/sobre-nos">SOBRE NÓS</a></li>
                     <li><a href="/fale-conosco">FALE CONOSCO</a></li>
                     <li><a href="/perguntas-frequentes">PERGUNTAS FREQUENTES</a></li>
-                    <li><a href="/cadastro-login"><button>Crie a sua conta ou faça login</button></a></li>
+                    <li>
+                        {% if campo_cliente == True %}
+                        <span class="material-symbols-outlined">person</span><p>{{campo_nome_usuario}}</p>
+                        {% else %}
+                        <a href="/cadastro-login"><button>Crie a sua conta ou faça login</button></a>
+                        {% endif %}
+                    </li>
                 </ul>
             </div>
 

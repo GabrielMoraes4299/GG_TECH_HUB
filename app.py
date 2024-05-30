@@ -12,6 +12,7 @@ def pg_inicial():
 
     mycursor = myBD.cursor()
 
+
     mycursor.execute(f"SELECT id_produto, nome, foto, preco FROM tb_produtos ORDER BY hora DESC")
 
     resultado_total = mycursor.fetchall()
@@ -20,12 +21,7 @@ def pg_inicial():
 
     resultado_vendas = mycursor.fetchall()
 
-    # lista_produtos = []
-
-    # for x  in resultado:
-    #     lista_produtos.append({"nome":x[0], "foto":x[1], "preco":x[2]})
-
-    return render_template("Pagina-inicial.html", campo_titulo="GG TECH HUB", campo_produtos_total = resultado_total, campo_produtos_vendas = resultado_vendas)
+    return render_template("Pagina-inicial.html", campo_cliente = False, campo_titulo="GG TECH HUB", campo_produtos_total = resultado_total, campo_produtos_vendas = resultado_vendas)
 
 @app.route("/cadastro-login")
 def pg_cadastrar_form():
@@ -55,7 +51,7 @@ def pg_login():
         if session.get("usuario","erro") == "Autenticado":   
             return redirect("/")
         else:
-            return redirect("cadastro-login.html")
+            return render_template("cadastro-login.html")
     else:
         email = request.form["email-login"]
         senha = request.form["senha-login"]
@@ -64,7 +60,20 @@ def pg_login():
 
         if cliente.logado:
             session["usuario"] = {"nome":cliente.nome, "cpf":cliente.cpf}
-            return redirect("/")
+            myBD = Connection.conectar()
+
+            mycursor = myBD.cursor()
+
+
+            mycursor.execute(f"SELECT id_produto, nome, foto, preco FROM tb_produtos ORDER BY hora DESC")
+
+            resultado_total = mycursor.fetchall()
+
+            mycursor.execute(f"SELECT id_produto, nome, foto, preco FROM tb_produtos ORDER BY num_vendas")
+
+            resultado_vendas = mycursor.fetchall()
+
+            return render_template("Pagina-inicial.html", campo_cliente = True, campo_nome_usuario = session['usuario']['nome'], campo_titulo="GG TECH HUB", campo_produtos_total = resultado_total, campo_produtos_vendas = resultado_vendas)
         else:
             session.clear()
             return redirect("/login")
@@ -81,7 +90,7 @@ def pg_produto(codigo):
     
     myBD.close()
 
-    return render_template("produto-individual.html", campo_titulo="Produto Individual", campo_nome = dados[0], campo_foto = dados[1], campo_preco = dados[2], campo_descricao = dados[3], campo_codigo = dados[4])
+    return render_template("produto-individual.html", campo_cliente = True, campo_nome_usuario = session['usuario']['nome'],campo_titulo="Produto Individual", campo_nome = dados[0], campo_foto = dados[1], campo_preco = dados[2], campo_descricao = dados[3], campo_codigo = dados[4])
 
 @app.route("/enviar_comentario", methods=["POST"])
 def enviar_mensagem():
