@@ -237,6 +237,7 @@
 
 .container-comentario__conteudo{
     width: 95%;
+    height: auto;
     padding: 20px;
     margin: 20px;
     font-size: 20px;
@@ -244,7 +245,13 @@
     font-family: 'Trebuchet MS', sans-serif;
 }
 
+.container-comentario__conteudo p{
+    width: 100%;
+    height: auto;
+    overflow-wrap: break-word;
+}
+
 .avaliacao_comentario{
     position: relative;
-    left: 99%;
+    left: 96%;
 }
