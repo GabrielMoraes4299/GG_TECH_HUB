@@ -51,21 +51,21 @@ class Cliente:
         else:
             self.logado = False
     
-    def mostrar_produtos(self):
+    def mostrar_comentarios(self, id_produto):
         myBD = Connection.conectar()
 
         mycursor = myBD.cursor()
 
-        mycursor.execute(f"SELECT nome, foto, preco FROM tb_usuario ORDER BY DESC")
+        mycursor.execute(f"SELECT nome, conteudo, avaliacao FROM tb_clientes ct, tb_comentarios cm WHERE ct.CPF = cm.CPF_cliente AND id_produto = {id_produto} ORDER BY id_comentario")
 
         resultado = mycursor.fetchall()
 
-        lista_produtos = []
+        lista_comentarios = []
 
         for x  in resultado:
-            lista_produtos.append({"nome":x[0], "foto":x[1], "preco":x[2]})
+            lista_comentarios.append({"nome":x[0], "conteudo":x[1], "avaliacao":x[2]})
         
-        return (lista_produtos)
+        return (lista_comentarios)
 
     # def listar_contatos(self):
     #     myBD = Connection.conectar()

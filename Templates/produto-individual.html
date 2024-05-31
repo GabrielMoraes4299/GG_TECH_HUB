@@ -34,9 +34,9 @@
         </div>
     </div>
 
-    <div class="container-comentarios">
+    <div class="container-comentarios" id="comentarios">
         <h1>Comentários</h1>
-        <div class="container-comentario">
+        <!-- <div class="container-comentario">
             <div class="container-comentario__foto">
                 <figure>
                     <span class="material-symbols-outlined">person</span>
@@ -48,7 +48,7 @@
                 <p class="conteudo_comentario">Olá sou o Gabriel e gostei muito do produto</p>
                 <p class="avaliacao_comentario">98</p>
             </div>
-        </div>
+        </div> -->
     </div>
 
 <script type="text/javascript">
@@ -75,6 +75,36 @@
             }
         })
     }
+
+    function mostrar_comentarios(){
+        $.ajax({
+            url: '/mostrar_comentarios/{{campo_codigo}}',
+            type: 'GET',
+            success: function(lista_comentarios){
+                for (let i = 0; i < lista_comentarios.length; i++) {
+                    $('#comentarios').append(`
+                    <div class="container-comentario">
+                        <div class="container-comentario__foto">
+                            <figure>
+                                <span class="material-symbols-outlined">person</span>
+                            </figure>
+                            <h1>${lista_comentarios[i]['nome']}</h1>
+                        </div>
+
+                        <div class="container-comentario__conteudo">
+                            <p class="conteudo_comentario">${lista_comentarios[i]['conteudo']}</p>
+                            <p class="avaliacao_comentario">${lista_comentarios[i]['avaliacao']}</p>
+                        </div>
+                    </div>`);
+                }
+            },
+            error: function(){
+                
+            }
+        })
+    }
+
+    mostrar_comentarios();
 </script>
 {% endblock %}
 

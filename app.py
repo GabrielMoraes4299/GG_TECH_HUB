@@ -111,4 +111,13 @@ def enviar_mensagem():
     myBD.commit()
 
     return jsonify({}), 200
+
+@app.route('/mostrar_comentarios/<id_produto>')
+def mostrar_comentarios(id_produto):
+    cliente = Cliente()
+
+    lista_comentarios = cliente.mostrar_comentarios(id_produto)
+
+    return jsonify(lista_comentarios), 200
+
 app.run(debug=True)
