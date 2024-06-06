@@ -120,4 +120,9 @@ def mostrar_comentarios(id_produto):
 
     return jsonify(lista_comentarios), 200
 
+# @app.route("/categorias/<id_categoria>")
+@app.route("/categorias")
+def pg_categorias():
+    return render_template("produtos.html")
+
 app.run(debug=True)
