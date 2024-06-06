@@ -1,0 +1,35 @@
+.container-prodcategorias{
+    display: flex;
+    width: 100vw;
+    min-height: 62vh;
+}
+
+.container-prodcategorias__filtro{
+    width: 30%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.container-prodcategorias__produtos{
+    width: 70%;
+    border: 1px solid black;
+}
+
+.container-produto{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid black;
+}
+
+.container-img{
+    width: 20%;
+    border: 1px solid black;
+}
+
+.container-img img{
+    width: 100%;
+}
