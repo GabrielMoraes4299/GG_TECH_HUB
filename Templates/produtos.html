@@ -12,14 +12,16 @@
     </div>
 
     <div class="container-prodcategorias__produtos">
+        {% for i in campo_resultado %}
         <div class="container-produto">
-            <figure class="container-img"><img src="" alt=""></figure>
+            <figure class="container-img"><img src="{{i[1]}}" alt=""></figure>
             <div class="container-produto__info">
-                <h2>Nome do Produto</h2>
-                <h3>Preço</h3>
+                <h2>{{i[0]}}</h2>
+                <h3>{{i[2]}}</h3>
             </div>
-            <h1 class="container-produto__avaliacao">Avaliação</h1>
+            <h1 class="container-produto__avaliacao">80/100</h1>
         </div>
+        {% endfor %}
     </div>
 </div>
 
