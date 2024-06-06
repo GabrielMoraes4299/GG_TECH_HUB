@@ -121,8 +121,16 @@ def mostrar_comentarios(id_produto):
     return jsonify(lista_comentarios), 200
 
 # @app.route("/categorias/<id_categoria>")
-@app.route("/categorias")
-def pg_categorias():
-    return render_template("produtos.html")
+@app.route("/categorias/<id_categoria>")
+def pg_categorias(id_categoria):
+    myBD = Connection.conectar()
+
+    mycursor = myBD.cursor()
+
+    mycursor.execute(f"SELECT nome, foto, preco FROM tb_produtos p, tb_categorias c WHERE p.id_categoria = c.id_categoria AND p.id_categoria = {id_categoria}")
+
+    resultado = mycursor.fetchall()
+
+    return render_template("produtos.html", campo_resultado = resultado)
 
 app.run(debug=True)

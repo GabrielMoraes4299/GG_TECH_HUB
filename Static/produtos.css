@@ -21,15 +21,17 @@
 .container-produto{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    gap: 40px;
     border: 1px solid black;
 }
 
 .container-img{
-    width: 20%;
+    width: 200px;
     border: 1px solid black;
 }
 
 .container-img img{
     width: 100%;
 }
+
+Smartphones, Notebooks, Câmeras, Tablets, Smartwatches, Acessórios de Áudio, Monitores e TVs, Consoles de Jogos, Impressoras, Roteadores e Redes
