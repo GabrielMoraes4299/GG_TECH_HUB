@@ -85,6 +85,16 @@ def pg_produto(codigo):
 
     dados = mycursor.fetchone()
     
+    mycursor.execute(f"SELECT avaliacao FROM tb_comentarios WHERE id_produto = {codigo}")
+    
+    avaliacoes = mycursor.fetchall()
+    
+    count = 0
+    
+    for i in avaliacoes:
+        i += count
+    
+    
     myBD.close()
     
     if "usuario" in session:
