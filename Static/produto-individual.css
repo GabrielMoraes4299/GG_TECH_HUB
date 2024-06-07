@@ -65,8 +65,12 @@
     gap: 20px;
 }
 
-.container-btns .btn-addcarrinho{
+.container-btns a{
     width: 50%;
+}
+
+.container-btns a .btn-addcarrinho{
+    width: 100%;
     height: 2rem;
     border-radius: 20px;
     border: none;
@@ -78,7 +82,7 @@
     cursor: pointer;
 }
 
-.container-btns .btn-addcarrinho:hover{
+.container-btns a .btn-addcarrinho:hover{
     background-color: rgb(112, 112, 255);
 }
 

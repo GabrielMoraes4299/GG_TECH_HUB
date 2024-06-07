@@ -34,4 +34,7 @@
     width: 100%;
 }
 
-Smartphones, Notebooks, Câmeras, Tablets, Smartwatches, Acessórios de Áudio, Monitores e TVs, Consoles de Jogos, Impressoras, Roteadores e Redes
+.produto{
+    text-decoration: none;
+    color: black;
+}

@@ -133,7 +133,7 @@ def pg_categorias(id_categoria):
 
     mycursor = myBD.cursor()
 
-    mycursor.execute(f"SELECT nome, foto, preco FROM tb_produtos p, tb_categorias c WHERE p.id_categoria = c.id_categoria AND p.id_categoria = {id_categoria}")
+    mycursor.execute(f"SELECT nome, foto, preco, id_produto FROM tb_produtos p, tb_categorias c WHERE p.id_categoria = c.id_categoria AND p.id_categoria = {id_categoria}")
 
     resultado = mycursor.fetchall()
     
@@ -150,15 +150,36 @@ def pg_categorias(id_categoria):
 
 @app.route("/carrinho")
 def carrinho():
-    return render_template("carrinho.html")
+    if "usuario" in session:
+        status_usuario = True
+        nome_usuario = session["usuario"]["nome"]
+        cpf_usuario = session["usuario"]["cpf"]
+    else:
+        status_usuario = False
+        nome_usuario = None
+        cpf_usuario = None
+        
+    return render_template("carrinho.html", campo_cliente = status_usuario, campo_nome_cliente = nome_usuario, campo_cpf_cliente = cpf_usuario, campo_titulo = "Carrinho de Compras")
 
+@app.route("/addcarrinho/<produto>")
+def addcarrinho(produto):
+    cpf_cliente = session["usuario"]["cpf"]
+    id_produto = produto
+    qnt_produtos = 1
+    
+    myBD = Connection.conectar()
+
+    mycursor = myBD.cursor()
+    
+    mycursor.execute(f"INSERT INTO tb_carrinho(id_produto, CPF_cliente, quantidade) VALUES ({id_produto},'{cpf_cliente}',{qnt_produtos});")
+    
+    myBD.commit()
+    
+    return redirect(f"/produto-individual/{id_produto}")
+    
 @app.route("/logoff")
 def pagina_logoff():
     session.clear()
     return redirect("/")
-
-@app.route("/carrinho")
-def pg_cadastrar_form():
-    return render_template("carrinho.html", campo_titulo="carrinho de compras")
 
 app.run(debug=True)
