@@ -51,33 +51,46 @@
 </div>
 
 <script>
-    function atualizarSubtotal(element) {
-        const produtoRow = element.closest('.produto');
-        const precoTexto = produtoRow.querySelector('.preco').textContent;
-        const preco = parseFloat(precoTexto.replace('R$ ', '').replace(',', '.'));
-        const quantidade = parseInt(element.value);
-        const subtotal = preco * quantidade;
-        produtoRow.querySelector('.subtotal').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-        atualizarTotal();
+function alerta(quantidade, callback) {
+    var mensagem = `Tem certeza de que deseja excluir ${quantidade} item(s)?`;
+    var r = confirm(mensagem);
+    if (r == true) {
+        if (callback && typeof callback === 'function') {
+            callback();
+        }
     }
+}
 
-    function atualizarTotal() {
-        let total = 0;
-        document.querySelectorAll('.subtotal').forEach(subtotalElement => {
-            const subtotalTexto = subtotalElement.textContent;
-            const subtotal = parseFloat(subtotalTexto.replace('R$ ', '').replace(',', '.'));
-            total += subtotal;
-        });
-        document.getElementById('total').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
-    }
+function atualizarSubtotal(element) {
+    const produtoRow = element.closest('.produto');
+    const precoTexto = produtoRow.querySelector('.preco').textContent;
+    const preco = parseFloat(precoTexto.replace('R$ ', '').replace(',', '.'));
+    const quantidade = parseInt(element.value);
+    const subtotal = preco * quantidade;
+    produtoRow.querySelector('.subtotal').textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
+    atualizarTotal();
+}
 
-    function removerProduto(element) {
+function atualizarTotal() {
+    let total = 0;
+    document.querySelectorAll('.subtotal').forEach(subtotalElement => {
+        const subtotalTexto = subtotalElement.textContent;
+        const subtotal = parseFloat(subtotalTexto.replace('R$ ', '').replace(',', '.'));
+        total += subtotal;
+    });
+    document.getElementById('total').textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+}
+
+function removerProduto(element) {
+    const quantidade = parseInt(element.closest('.produto').querySelector('.quantidade').value);
+    alerta(quantidade, function() { // Passando uma função de retorno de chamada como segundo parâmetro
         const produtoRow = element.closest('.produto');
         produtoRow.remove();
         atualizarTotal();
-    }
+    });
+}
 
-    window.onload = atualizarTotal;
+window.onload = atualizarTotal;
 </script>
 
 </body>

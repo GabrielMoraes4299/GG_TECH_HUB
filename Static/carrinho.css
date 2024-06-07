@@ -63,7 +63,17 @@ body {
     width: 80%;
     display: flex;
     justify-content: flex-end; 
-    
+}
+
+.botao-container .fas.fa-trash-alt {
+    font-size: 20px; 
+    color: black; 
+    transition: transform 0.6s ease, color 0.6s ease; 
+}
+
+.botao-container .fas.fa-trash-alt:hover {
+    transform: scale(2.2);
+    color: rgb(11, 27, 203); 
 }
 
 .table-container {
