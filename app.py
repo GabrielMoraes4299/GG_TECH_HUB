@@ -150,7 +150,16 @@ def pg_categorias(id_categoria):
 
 @app.route("/carrinho")
 def carrinho():
-    return render_template("carrinho.html")
+    if "usuario" in session:
+        status_usuario = True
+        nome_usuario = session["usuario"]["nome"]
+        cpf_usuario = session["usuario"]["cpf"]
+    else:
+        status_usuario = False
+        nome_usuario = None
+        cpf_usuario = None
+        
+    return render_template("carrinho.html", campo_cliente = status_usuario, campo_nome_cliente = nome_usuario, campo_cpf_cliente = cpf_usuario, campo_titulo = "Carrinho de Compras")
 
 @app.route("/addcarrinho/<produto>")
 def addcarrinho(produto):
@@ -172,9 +181,5 @@ def addcarrinho(produto):
 def pagina_logoff():
     session.clear()
     return redirect("/")
-
-@app.route("/carrinho")
-def pg_cadastrar_form():
-    return render_template("carrinho.html", campo_titulo="carrinho de compras")
 
 app.run(debug=True)
