@@ -20,8 +20,17 @@ def pg_inicial():
     mycursor.execute(f"SELECT id_produto, nome, foto, preco FROM tb_produtos ORDER BY num_vendas")
 
     resultado_vendas = mycursor.fetchall()
-
-    return render_template("Pagina-inicial.html", campo_cliente = False, campo_titulo="GG TECH HUB", campo_produtos_total = resultado_total, campo_produtos_vendas = resultado_vendas)
+    
+    if "usuario" in session:
+        status_usuario = True
+        nome_usuario = session["usuario"]["nome"]
+        cpf_usuario = session["usuario"]["cpf"]
+    else:
+        status_usuario = False
+        nome_usuario = None
+        cpf_usuario = None
+        
+    return render_template("Pagina-inicial.html", campo_cliente = status_usuario, campo_nome_cliente = nome_usuario, campo_cpf_cliente = cpf_usuario,campo_titulo="GG TECH HUB", campo_produtos_total = resultado_total, campo_produtos_vendas = resultado_vendas)
 
 @app.route("/cadastro-login")
 def pg_cadastrar_form():
@@ -60,20 +69,8 @@ def pg_login():
 
         if cliente.logado:
             session["usuario"] = {"nome":cliente.nome, "cpf":cliente.cpf}
-            myBD = Connection.conectar()
 
-            mycursor = myBD.cursor()
-
-
-            mycursor.execute(f"SELECT id_produto, nome, foto, preco FROM tb_produtos ORDER BY hora DESC")
-
-            resultado_total = mycursor.fetchall()
-
-            mycursor.execute(f"SELECT id_produto, nome, foto, preco FROM tb_produtos ORDER BY num_vendas")
-
-            resultado_vendas = mycursor.fetchall()
-
-            return render_template("Pagina-inicial.html", campo_cliente = True, campo_nome_usuario = session['usuario']['nome'], campo_titulo="GG TECH HUB", campo_produtos_total = resultado_total, campo_produtos_vendas = resultado_vendas)
+            return redirect('/')
         else:
             session.clear()
             return redirect("/login")
@@ -89,8 +86,17 @@ def pg_produto(codigo):
     dados = mycursor.fetchone()
     
     myBD.close()
+    
+    if "usuario" in session:
+        status_usuario = True
+        nome_usuario = session["usuario"]["nome"]
+        cpf_usuario = session["usuario"]["cpf"]
+    else:
+        status_usuario = False
+        nome_usuario = None
+        cpf_usuario = None
 
-    return render_template("produto-individual.html", campo_cliente = True, campo_nome_usuario = session['usuario']['nome'],campo_titulo="Produto Individual", campo_nome = dados[0], campo_foto = dados[1], campo_preco = dados[2], campo_descricao = dados[3], campo_codigo = dados[4])
+    return render_template("produto-individual.html", campo_cliente = status_usuario, campo_nome_cliente = nome_usuario, campo_cpf_cliente = cpf_usuario,campo_titulo="Produto Individual", campo_nome = dados[0], campo_foto = dados[1], campo_preco = dados[2], campo_descricao = dados[3], campo_codigo = dados[4])
 
 @app.route("/enviar_comentario", methods=["POST"])
 def enviar_mensagem():
@@ -130,7 +136,20 @@ def pg_categorias(id_categoria):
     mycursor.execute(f"SELECT nome, foto, preco FROM tb_produtos p, tb_categorias c WHERE p.id_categoria = c.id_categoria AND p.id_categoria = {id_categoria}")
 
     resultado = mycursor.fetchall()
+    
+    if "usuario" in session:
+        status_usuario = True
+        nome_usuario = session["usuario"]["nome"]
+        cpf_usuario = session["usuario"]["cpf"]
+    else:
+        status_usuario = False
+        nome_usuario = None
+        cpf_usuario = None
 
-    return render_template("produtos.html", campo_resultado = resultado)
+    return render_template("produtos.html", campo_cliente = status_usuario, campo_nome_cliente = nome_usuario, campo_cpf_cliente = cpf_usuario, campo_resultado = resultado)
+
+@app.route("/carrinho")
+def carrinho():
+    return render_template("carrinho.html")
 
 app.run(debug=True)
