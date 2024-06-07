@@ -21,7 +21,7 @@
                     <li><a href="/perguntas-frequentes">PERGUNTAS FREQUENTES</a></li>
                     <li>
                         {% if campo_cliente %}
-                        <span class="material-symbols-outlined">person</span><p>{{campo_nome_cliente}}</p><a href="/carrinho"><span class="material-symbols-outlined">shopping_cart</span></a>
+                        <span class="material-symbols-outlined">person</span><p>{{campo_nome_cliente}}</p><a href="/carrinho"><span class="material-symbols-outlined">shopping_cart</span></a><a href="/logoff" class="logoff"><span class="material-symbols-outlined">logout</span></a>
                         <!-- <a href="/carrinho/{{campo_cpf_cliente}}"></a> Link oficial -->
                         {% else %}
                         <a href="/cadastro-login"><button>Crie a sua conta ou faça login</button></a>

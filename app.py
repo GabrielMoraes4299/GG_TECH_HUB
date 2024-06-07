@@ -152,4 +152,9 @@ def pg_categorias(id_categoria):
 def carrinho():
     return render_template("carrinho.html")
 
+@app.route("/logoff")
+def pagina_logoff():
+    session.clear()
+    return redirect("/")
+
 app.run(debug=True)

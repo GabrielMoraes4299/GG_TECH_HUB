@@ -24,6 +24,18 @@ body{
     font-size: 50px;
 }
 
+.container-header__info li .logoff .material-symbols-outlined{
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+    color: black;
+    font-size: 40px;
+    background-color: red;
+    border-radius: 10px;
+}
+
 .container-header p{
     color: rgb(52, 52, 255);
     font-size: 30px;
