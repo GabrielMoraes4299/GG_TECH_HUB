@@ -133,7 +133,7 @@ def pg_categorias(id_categoria):
 
     mycursor = myBD.cursor()
 
-    mycursor.execute(f"SELECT nome, foto, preco FROM tb_produtos p, tb_categorias c WHERE p.id_categoria = c.id_categoria AND p.id_categoria = {id_categoria}")
+    mycursor.execute(f"SELECT nome, foto, preco, id_produto FROM tb_produtos p, tb_categorias c WHERE p.id_categoria = c.id_categoria AND p.id_categoria = {id_categoria}")
 
     resultado = mycursor.fetchall()
     
@@ -152,6 +152,22 @@ def pg_categorias(id_categoria):
 def carrinho():
     return render_template("carrinho.html")
 
+@app.route("/addcarrinho/<produto>")
+def addcarrinho(produto):
+    cpf_cliente = session["usuario"]["cpf"]
+    id_produto = produto
+    qnt_produtos = 1
+    
+    myBD = Connection.conectar()
+
+    mycursor = myBD.cursor()
+    
+    mycursor.execute(f"INSERT INTO tb_carrinho(id_produto, CPF_cliente, quantidade) VALUES ({id_produto},'{cpf_cliente}',{qnt_produtos});")
+    
+    myBD.commit()
+    
+    return redirect(f"/produto-individual/{id_produto}")
+    
 @app.route("/logoff")
 def pagina_logoff():
     session.clear()
