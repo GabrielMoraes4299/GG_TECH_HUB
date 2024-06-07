@@ -173,4 +173,8 @@ def pagina_logoff():
     session.clear()
     return redirect("/")
 
+@app.route("/carrinho")
+def pg_cadastrar_form():
+    return render_template("carrinho.html", campo_titulo="carrinho de compras")
+
 app.run(debug=True)
