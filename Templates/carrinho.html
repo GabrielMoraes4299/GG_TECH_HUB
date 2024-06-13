@@ -14,26 +14,13 @@
                 <th>Ações</th>
             </tr>
         </thead>
-        <tbody>
-            <tr class="produto">
-                <td>Nome do Produto 1</td>
-                <td class="preco">R$ 100,00</td>
-                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
-                <td class="subtotal">R$ 100,00</td>
-                <td class="acoes"><i class="fas fa-trash-alt" onclick="removerProduto(this)"></i></td>
-            </tr>
-            <tr class="produto">
-                <td>Nome do Produto 2</td>
-                <td class="preco">R$ 100,00</td>
-                <td><input type="number" class="quantidade" min="1" max="10" value="1" onchange="atualizarSubtotal(this)"></td>
-                <td class="subtotal">R$ 100,00</td>
-                <td class="acoes"><i class="fas fa-trash-alt" onclick="removerProduto(this)"></i></td>
-            </tr>
+        <tbody id="tbody">
+            
         </tbody>
         <tfoot>
             <tr>
                 <td colspan="4">Total</td>
-                <td id="total">R$ 200,00</td>
+                <td id="total"></td>
             </tr>
             <tr>
                 <td colspan="5">
@@ -44,7 +31,7 @@
     </table>
 </div>
 
-<script>
+<!-- <script>
 function alerta(quantidade, callback) {
     var mensagem = `Tem certeza de que deseja excluir ${quantidade} item(s)?`;
     var r = confirm(mensagem);
@@ -85,6 +72,68 @@ function removerProduto(element) {
 }
 
 window.onload = atualizarTotal;
+</script> -->
+
+<script type="text/javascript">
+    function mostrar_carrinho(){
+        $.ajax({
+            url: '/mostrar_carrinho',
+            type: 'GET',
+            success: function(itens_carrinho){
+                document.querySelector('#tbody').innerHTML = '';
+                total = 0;
+                for (let i = 0; i < itens_carrinho.length; i++) {
+                    const listaProdutos = document.querySelector('#tbody');
+
+                    /* Limpa a tabela antes de adicionar novos dados 
+                    - listaClientesElement: é o elemento HTML que representa a tabela (<tbody>)*/
+
+                    // Para cada cliente na lista de clientes, insere uma nova linha (<tr>) na tabela de clientes
+                    const linha = listaProdutos.insertRow();
+                    /* 
+                    - A referência para a nova linha é armazenada na constante linha
+                    - insertRow(): é um método que cria e insere uma nova linha (<tr>) na tabela */
+
+                    /* Cria células para os dados do cliente
+                    - insertCell(): é um método que cria e insere uma nova célula(<td>) na tabela */
+                    const celulaNome = linha.insertCell();
+                    const celulaPreco = linha.insertCell();
+                    const celulaQuantidade = linha.insertCell();
+                    const celulaSubtotal = linha.insertCell();
+                    const celulaAcoes = linha.insertCell();
+
+                    const nome = itens_carrinho[i][0];
+                    const preco = itens_carrinho[i][1];
+                    const quantidade = itens_carrinho[i][2];
+                    const subtotal = preco * quantidade;
+                    total += subtotal;
+
+                    var inputElement = document.createElement("input");
+                    inputElement.type = "number"
+                    // Preenche as células com os dados do cliente
+                    celulaNome.textContent = nome;
+                    celulaPreco.textContent = preco;
+                    celulaQuantidade.appendChild(inputElement).value = quantidade;
+                    celulaSubtotal.textContent = subtotal;
+
+                    // Cria um botão de escluir para cada cliente
+                    const botaoExcluir = document.createElement('i');
+
+                    // Adicionar o texto e uma classe ao botão excluir
+                    botaoExcluir.className = 'fas fa-trash-alt';
+
+                    // Adiciona o botão à célula de ações
+                    celulaAcoes.appendChild(botaoExcluir);
+
+                }
+                document.querySelector("#total").innerHTML = total;
+            },
+            error: function(){
+                alert(')X ERROOOOOOOOOO X(')
+            }
+        })
+    }
+    mostrar_carrinho()
 </script>
 
 {% endblock %}
