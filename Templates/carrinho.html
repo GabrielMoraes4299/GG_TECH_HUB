@@ -109,7 +109,9 @@ window.onload = atualizarTotal;
                     total += subtotal;
 
                     var inputElement = document.createElement("input");
-                    inputElement.type = "number"
+                    inputElement.type = "number";
+                    inputElement.max = 10;
+                    inputElement.min = 1;
                     // Preenche as células com os dados do cliente
                     celulaNome.textContent = nome;
                     celulaPreco.textContent = preco;
