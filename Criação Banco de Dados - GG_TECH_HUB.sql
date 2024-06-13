@@ -36,7 +36,7 @@ CREATE TABLE tb_comentarios(
     id_produto BIGINT NOT NULL,
     CPF_cliente VARCHAR(11) NOT NULL,
     conteudo VARCHAR(300) NOT NULL,
-    avaliacao TINYINT NOT NULL,
+    avaliacao TINYINT NOT NULL
 );
 
 CREATE TABLE tb_carrinho (
