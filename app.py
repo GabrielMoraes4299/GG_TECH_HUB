@@ -29,7 +29,7 @@ def pg_inicial():
         status_usuario = False
         nome_usuario = None
         cpf_usuario = None
-        
+
     return render_template("Pagina-inicial.html", campo_cliente = status_usuario, campo_nome_cliente = nome_usuario, campo_cpf_cliente = cpf_usuario,campo_titulo="GG TECH HUB", campo_produtos_total = resultado_total, campo_produtos_vendas = resultado_vendas)
 
 @app.route("/cadastro-login")
@@ -85,6 +85,20 @@ def pg_produto(codigo):
 
     dados = mycursor.fetchone()
     
+    mycursor.execute(f"SELECT avaliacao FROM tb_comentarios WHERE id_produto = {codigo}")
+    
+    avaliacoes = mycursor.fetchall()
+    
+    qnt_avaliacoes = len(avaliacoes)
+    
+    soma_avaliacoes = 0
+    for i in avaliacoes:
+        soma_avaliacoes += i[0]
+    
+    if qnt_avaliacoes == 0:
+        media_avaliacoes = 0
+    else:
+        media_avaliacoes = int(soma_avaliacoes / qnt_avaliacoes)
     myBD.close()
     
     if "usuario" in session:
@@ -96,7 +110,7 @@ def pg_produto(codigo):
         nome_usuario = None
         cpf_usuario = None
 
-    return render_template("produto-individual.html", campo_cliente = status_usuario, campo_nome_cliente = nome_usuario, campo_cpf_cliente = cpf_usuario,campo_titulo="Produto Individual", campo_nome = dados[0], campo_foto = dados[1], campo_preco = dados[2], campo_descricao = dados[3], campo_codigo = dados[4])
+    return render_template("produto-individual.html", campo_cliente = status_usuario, campo_nome_cliente = nome_usuario, campo_cpf_cliente = cpf_usuario,campo_titulo="Produto Individual", campo_nome = dados[0], campo_foto = dados[1], campo_preco = dados[2], campo_descricao = dados[3], campo_codigo = dados[4], campo_avaliacao = media_avaliacoes)
 
 @app.route("/enviar_comentario", methods=["POST"])
 def enviar_mensagem():
@@ -146,6 +160,7 @@ def pg_categorias(id_categoria):
         nome_usuario = None
         cpf_usuario = None
 
+
     return render_template("produtos.html", campo_cliente = status_usuario, campo_nome_cliente = nome_usuario, campo_cpf_cliente = cpf_usuario, campo_resultado = resultado)
 
 @app.route("/carrinho")
@@ -170,7 +185,7 @@ def addcarrinho(produto):
     myBD = Connection.conectar()
 
     mycursor = myBD.cursor()
-    
+
     mycursor.execute(f"INSERT INTO tb_carrinho(id_produto, CPF_cliente, quantidade) VALUES ({id_produto},'{cpf_cliente}',{qnt_produtos});")
     
     myBD.commit()
