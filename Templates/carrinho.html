@@ -105,13 +105,22 @@ window.onload = atualizarTotal;
                     const nome = itens_carrinho[i][0];
                     const preco = itens_carrinho[i][1];
                     const quantidade = itens_carrinho[i][2];
+                    const id_produto = itens_carrinho[i][3];
+                    console.log(id_produto);
+                    
                     const subtotal = preco * quantidade;
                     total += subtotal;
 
                     var inputElement = document.createElement("input");
                     inputElement.type = "number";
+                    inputElement.value = id_produto;
                     inputElement.max = 10;
                     inputElement.min = 1;
+
+                    inputElement.addEventListener('change', function() {
+                        atualizarQuantidade(id_produto, inputElement.value);
+                    });
+
                     // Preenche as células com os dados do cliente
                     celulaNome.textContent = nome;
                     celulaPreco.textContent = preco;
@@ -127,6 +136,8 @@ window.onload = atualizarTotal;
                     // Adiciona o botão à célula de ações
                     celulaAcoes.appendChild(botaoExcluir);
 
+                    
+
                 }
                 document.querySelector("#total").innerHTML = total;
             },
@@ -135,7 +146,27 @@ window.onload = atualizarTotal;
             }
         })
     }
-    mostrar_carrinho()
+
+    function atualizarQuantidade(id_produto, novaQuantidade) {
+        // Envia uma requisição AJAX para atualizar a quantidade no banco de dados
+        $.ajax({
+            url: `/addcarrinho/${id_produto}/${novaQuantidade}`,
+            type: 'POST',
+            data: {
+                id_produto: id_produto,
+                nova_quantidade: novaQuantidade
+            },
+            success: function(response) {
+                // Atualiza a visualização do carrinho após a atualização da quantidade no banco de dados
+                mostrar_carrinho();
+            },
+            error: function() {
+                alert('Erro ao atualizar a quantidade do produto.');
+            }
+        });
+    }
+
+    mostrar_carrinho();
 </script>
 
 {% endblock %}
