@@ -63,7 +63,7 @@
 }
 
 .table-container {
-    max-height: 300px; 
+    max-height: 400px; 
     overflow-y: auto;
     width: 80%; 
     border: 1px solid black;

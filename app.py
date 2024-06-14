@@ -176,18 +176,76 @@ def carrinho():
         
     return render_template("carrinho.html", campo_cliente = status_usuario, campo_nome_cliente = nome_usuario, campo_cpf_cliente = cpf_usuario, campo_titulo = "Carrinho de Compras")
 
-@app.route("/addcarrinho/<produto>")
-def addcarrinho(produto):
-    cpf_cliente = session["usuario"]["cpf"]
-    id_produto = produto
-    qnt_produtos = 1
-    
+@app.route("/mostrar_carrinho")
+def mostrar_carrinho():
     myBD = Connection.conectar()
 
     mycursor = myBD.cursor()
 
-    mycursor.execute(f"INSERT INTO tb_carrinho(id_produto, CPF_cliente, quantidade) VALUES ({id_produto},'{cpf_cliente}',{qnt_produtos});")
+    cpf_usuario = session["usuario"]["cpf"]
+
+    mycursor.execute(f"SELECT nome, preco, quantidade, c.id_produto FROM tb_carrinho c, tb_produtos p WHERE p.id_produto = c.id_produto AND CPF_cliente = {cpf_usuario};")
+
+    itens_carrinho = mycursor.fetchall()
+
+    print(itens_carrinho)
+
+    return jsonify(itens_carrinho), 200
+
+@app.route("/addcarrinho/<produto>/<quantidade>", methods=["GET", "POST"])
+def addcarrinho(produto, quantidade):
+    if request.method == "GET":
+        cpf_cliente = session["usuario"]["cpf"]
+        id_produto = produto
+        qnt_produtos = quantidade
+        
+        myBD = Connection.conectar()
+
+        mycursor = myBD.cursor()
+
+        mycursor.execute(f"SELECT * FROM tb_carrinho WHERE id_produto = {id_produto} AND CPF_cliente = {cpf_cliente}")
+
+        dados = mycursor.fetchall()
+
+        if len(dados) == 0:
+            mycursor.execute(f"INSERT INTO tb_carrinho(id_produto, CPF_cliente, quantidade) VALUES ({id_produto},'{cpf_cliente}',{qnt_produtos});")
+        elif len(dados) > 0:
+            mycursor.execute(f"UPDATE tb_carrinho SET quantidade = quantidade + {qnt_produtos} WHERE id_produto = {id_produto} AND CPF_cliente = {cpf_cliente};")
+        myBD.commit()
+        
+        return redirect(f"/produto-individual/{id_produto}")
+    else:
+        cpf_cliente = session["usuario"]["cpf"]
+        id_produto = produto
+        qnt_produtos = quantidade
+        
+        myBD = Connection.conectar()
+
+        mycursor = myBD.cursor()
+
+        mycursor.execute(f"SELECT * FROM tb_carrinho WHERE id_produto = {id_produto} AND CPF_cliente = {cpf_cliente}")
+
+        dados = mycursor.fetchall()
+
+        if len(dados) == 0:
+            mycursor.execute(f"INSERT INTO tb_carrinho(id_produto, CPF_cliente, quantidade) VALUES ({id_produto},'{cpf_cliente}',{qnt_produtos});")
+        elif len(dados) > 0:
+            mycursor.execute(f"UPDATE tb_carrinho SET quantidade = {qnt_produtos} WHERE id_produto = {id_produto} AND CPF_cliente = {cpf_cliente};")
+        myBD.commit()
+        
+        return redirect(f"/produto-individual/{id_produto}")
     
+@app.route("/excluir-produto/<produto>", methods=["POST"])
+def excluir_produto(produto):
+    cpf_cliente = session["usuario"]["cpf"]
+    id_produto = produto
+
+    myBD = Connection.conectar()
+
+    mycursor = myBD.cursor()
+
+    mycursor.execute(f"DELETE FROM tb_carrinho WHERE id_produto = {id_produto} AND CPF_cliente = {cpf_cliente}")
+
     myBD.commit()
     
     return redirect(f"/produto-individual/{id_produto}")
