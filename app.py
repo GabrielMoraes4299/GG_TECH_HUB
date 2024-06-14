@@ -235,6 +235,21 @@ def addcarrinho(produto, quantidade):
         
         return redirect(f"/produto-individual/{id_produto}")
     
+@app.route("/excluir-produto/<produto>", methods=["POST"])
+def excluir_produto(produto):
+    cpf_cliente = session["usuario"]["cpf"]
+    id_produto = produto
+
+    myBD = Connection.conectar()
+
+    mycursor = myBD.cursor()
+
+    mycursor.execute(f"DELETE FROM tb_carrinho WHERE id_produto = {id_produto} AND CPF_cliente = {cpf_cliente}")
+
+    myBD.commit()
+    
+    return redirect(f"/produto-individual/{id_produto}")
+    
 @app.route("/logoff")
 def pagina_logoff():
     session.clear()

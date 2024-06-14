@@ -108,8 +108,8 @@ window.onload = atualizarTotal;
                     const id_produto = itens_carrinho[i][3];
                     console.log(id_produto);
                     
-                    const subtotal = preco * quantidade;
-                    total += subtotal;
+                    const subtotal = `R$${preco * quantidade}`;
+                    total += preco * quantidade;
 
                     var inputElement = document.createElement("input");
                     inputElement.type = "number";
@@ -132,6 +132,10 @@ window.onload = atualizarTotal;
 
                     // Adicionar o texto e uma classe ao botão excluir
                     botaoExcluir.className = 'fas fa-trash-alt';
+
+                    botaoExcluir.addEventListener('click', function() {
+                        excluirProduto(id_produto);
+                    });
 
                     // Adiciona o botão à célula de ações
                     celulaAcoes.appendChild(botaoExcluir);
@@ -162,6 +166,21 @@ window.onload = atualizarTotal;
             },
             error: function() {
                 alert('Erro ao atualizar a quantidade do produto.');
+            }
+        });
+    }
+
+    function excluirProduto(id_produto) {
+        // Envia uma requisição AJAX para excluir o produto do carrinho
+        $.ajax({
+            url: `/excluir-produto/${id_produto}`,
+            type: 'POST',
+            success: function(response) {
+                // Atualiza a visualização do carrinho após a exclusão do produto do banco de dados
+                mostrar_carrinho();
+            },
+            error: function() {
+                alert('Erro ao excluir o produto do carrinho.');
             }
         });
     }
