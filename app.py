@@ -140,7 +140,6 @@ def mostrar_comentarios(id_produto):
 
     return jsonify(lista_comentarios), 200
 
-# @app.route("/categorias/<id_categoria>")
 @app.route("/categorias/<id_categoria>")
 def pg_categorias(id_categoria):
     myBD = Connection.conectar()
@@ -196,5 +195,17 @@ def addcarrinho(produto):
 def pagina_logoff():
     session.clear()
     return redirect("/")
+
+@app.route("/sobre-nos")
+def sobre_nos():
+    return render_template("sobre-nos.html")
+
+@app.route("/perguntas-frequentes")
+def perguntas_frequentes():
+    return render_template("perguntas-frequentes.html")
+
+@app.route("/fale-conosco")
+def fale_conosco():
+    return render_template("fale-conosco.html")
 
 app.run(debug=True)
